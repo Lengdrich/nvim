@@ -8,7 +8,7 @@ opt.termguicolors = true
 opt.hidden = true
 opt.magic = true
 opt.virtualedit = 'block'
-opt.clipboard = 'unnamedplus'
+opt.clipboard = ''
 opt.wildignorecase = true
 opt.swapfile = false
 opt.directory = cache_dir .. 'swap/'
@@ -56,7 +56,7 @@ opt.expandtab = true
 opt.autoindent = true
 opt.tabstop = 2
 opt.shiftwidth = 2
-opt.diffopt:append('linematch:50')
+-- opt.diffopt:append('linematch:50')
 
 -- wrap
 opt.linebreak = true
@@ -76,6 +76,23 @@ opt.colorcolumn = '100'
 if vim.loop.os_uname().sysname == 'Darwin' then
   vim.g.clipboard = {
     name = 'macOS-clipboard',
+    copy = {
+      ['+'] = 'pbcopy',
+      ['*'] = 'pbcopy',
+    },
+    paste = {
+      ['+'] = 'pbpaste',
+      ['*'] = 'pbpaste',
+    },
+    cache_enabled = 0,
+  }
+  vim.g.python_host_prog = '/usr/bin/python'
+  vim.g.python3_host_prog = '/usr/local/bin/python3'
+end
+
+if vim.loop.os_uname().sysname == 'wsl2' then
+  vim.g.clipboard = {
+    name = 'clipboard.exe',
     copy = {
       ['+'] = 'pbcopy',
       ['*'] = 'pbcopy',

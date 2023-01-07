@@ -3,14 +3,37 @@
 -- License: MIT
 
 local package = require('core.pack').package
-local conf = require('modules.lang.config')
+local conf = require('modules.editor.config')
 
 package({
   'nvim-treesitter/nvim-treesitter',
   event = 'BufRead',
   run = ':TSUpdate',
-  after = 'telescope.nvim',
   config = conf.nvim_treesitter,
+  dependencies = {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+  },
 })
 
-package({ 'nvim-treesitter/nvim-treesitter-textobjects', after = 'nvim-treesitter' })
+package({
+  'nvim-telescope/telescope.nvim',
+  cmd = 'Telescope',
+  config = conf.telescope,
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    'nvim-telescope/telescope-fzy-native.nvim',
+    'nvim-telescope/telescope-file-browser.nvim',
+  },
+})
+
+-- package({ 'mutchar.nvim', dev = true, ft = { 'c', 'cpp', 'go', 'rust' }, config = conf.mut_char })
+
+package({
+  'glepnir/hlsearch.nvim',
+  event = 'BufRead',
+  config = function()
+    require('hlsearch').setup()
+  end,
+})
+
+package({ 'phaazon/hop.nvim', event = 'BufRead', config = conf.hop })

@@ -14,6 +14,12 @@ package({
 })
 
 package({
+  "glepnir/lspsaga.nvim",
+  branch = "main",
+  config = conf.lspsaga,
+})
+
+package({
   'hrsh7th/nvim-cmp',
   event = 'InsertEnter',
   config = conf.nvim_cmp,
@@ -26,3 +32,4 @@ package({
 })
 
 package({ 'L3MON4D3/LuaSnip', event = 'InsertCharPre', config = conf.lua_snip })
+package({ 'windwp/nvim-autopairs', event = 'InsertEnter', config = conf.auto_pairs })

@@ -3,7 +3,7 @@
 -- License: MIT
 -- recommend plugins key defines in this file
 local keymap = require('core.keymap')
-local nmap, imap, cmap, xmap = keymap.nmap, keymap.imap, keymap.cmap, keymap.xmap
+local nmap, imap, cmap, xmap, vmap = keymap.nmap, keymap.imap, keymap.cmap, keymap.xmap, keymap.vmap
 local silent, noremap = keymap.silent, keymap.noremap
 local opts = keymap.new_opts
 local cmd = keymap.cmd
@@ -34,16 +34,45 @@ nmap({
   { '<C-l>', '<C-w>l', opts(noremap) },
   { '<C-j>', '<C-w>j', opts(noremap) },
   { '<C-k>', '<C-w>k', opts(noremap) },
+
+  -- 
+  { '<C-k>', '<C-w>k', opts(noremap) },
+
+  { '<C-u>', '9k', opts(noremap) },
+  { '<C-d>', '9j', opts(noremap) },
+
+  { '<Leader>w', ':w<CR>', opts(noremap) },
+
 })
 
 imap({
   -- insert mode
   { '<C-h>', '<Bs>', opts(noremap) },
   { '<C-e>', '<End>', opts(noremap) },
+  { 'jk', '<ESC>', opts(noremap) },
+  { 'Jk', '<ESC>', opts(noremap) },
+  { 'JK', '<ESC>', opts(noremap) },
+  { '<C-h>', '<Left>', opts(noremap) },
+  { '<C-j>', '<Down>', opts(noremap) },
+  { '<C-k>', '<Up>', opts(noremap) },
+  { '<C-l>', '<Right>', opts(noremap) },
 })
 
 -- commandline remap
 cmap({ '<C-b>', '<Left>', opts(noremap) })
+
+vmap({
+  { '<Leader>p', '"+p', opts(noremap) },
+  { '<Leader>P', '"+P', opts(noremap) },
+  { '<Leader>y', '"+y', opts(noremap) },
+  { '<Leader>Y', '"+Y', opts(noremap) },
+  -- { 'JK', '<ESC>', opts(noremap) },
+  -- { 'JK', '<ESC>', opts(noremap) },
+
+  { '<', '<gv', opts(noremap) },
+  { '>', '>gv', opts(noremap) },
+})
+
 -- usage of plugins
 nmap({
   -- packer
@@ -55,7 +84,7 @@ nmap({
   { '<Leader>ss', cmd('SessionSave'), opts(noremap, silent) },
   { '<Leader>sl', cmd('SessionLoad'), opts(noremap, silent) },
   -- nvimtree
-  { '<Leader>e', cmd('NvimTreeToggle'), opts(noremap, silent) },
+  { '<C-n>', cmd('NvimTreeToggle'), opts(noremap, silent) },
   -- Telescope
   { '<Leader>b', cmd('Telescope buffers'), opts(noremap, silent) },
   { '<Leader>fa', cmd('Telescope live_grep'), opts(noremap, silent) },
