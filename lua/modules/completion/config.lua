@@ -28,7 +28,7 @@ function config.nvim_cmp()
     -- You can set mappings if you want
     mapping = cmp.mapping.preset.insert({
       ['<C-e>'] = cmp.config.disable,
-      ['<CR>'] = cmp.mapping.confirm({ select = true }),
+      ['<Tab>'] = cmp.mapping.confirm({ select = true }),
     }),
     snippet = {
       expand = function(args)

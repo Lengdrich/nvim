@@ -39,6 +39,10 @@ nmap({
 
   { '<Leader>w', ':w<CR>', opts(noremap) },
 
+  { '<Leader>p', '"+p', opts(noremap) },
+  { '<Leader>P', '"+P', opts(noremap) },
+  { '<Leader>y', '"+y', opts(noremap) },
+  { '<Leader>Y', '"+Y', opts(noremap) },
 })
 
 imap({
