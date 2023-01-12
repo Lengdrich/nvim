@@ -1,5 +1,5 @@
 local keymap = require('core.keymap')
-local nmap, imap, cmap, xmap, vmap = keymap.nmap, keymap.imap, keymap.cmap, keymap.xmap, keymap.vmap
+local nmap, imap, cmap, xmap, vmap, tmap = keymap.nmap, keymap.imap, keymap.cmap, keymap.xmap, keymap.vmap, keymap.tmap
 local silent, noremap = keymap.silent, keymap.noremap
 local opts = keymap.new_opts
 local cmd = keymap.cmd
@@ -89,4 +89,64 @@ nmap({
   { '<Leader>b', cmd('Telescope buffers'), opts(noremap, silent) },
   { '<Leader>fa', cmd('Telescope live_grep'), opts(noremap, silent) },
   { '<Leader>ff', cmd('Telescope find_files'), opts(noremap, silent) },
+
+  --lspsaga
+  { ';n', cmd('Lspsaga diagnostic_jump_next') },
+  { ';p', cmd('Lspsaga diagnostic_jump_prev') },
+  { ';c', cmd('Lspsaga show_cursor_diagnostics') },
+  { 'K', cmd('Lspsaga hover_doc') },
+  { 'ga', cmd('Lspsaga code_action') },
+  { 'gd', cmd('Lspsaga peek_definition') },
+  { 'gs', cmd('Lspsaga signature_help') },
+  { 'gr', cmd('Lspsaga rename') },
+  { 'gh', cmd('Lspsaga lsp_finder') },
+  { '<Leader>o', cmd('LSoutlineToggle') },
+  { '<Leader>g', cmd('Lspsaga open_floaterm lazygit') },
+
+  -- dadbodui
+  { '<Leader>d', cmd('DBUIToggle') },
+
+  -- Telescope
+  { '<Leader>a', cmd('Telescope app') },
+  { '<Leader>j', cmd('Telescope buffers') },
+  { '<Leader>fa', cmd('Telescope live_grep') },
+  { '<Leader>fs', cmd('Telescope grep_string') },
+  {
+    '<Leader>e',
+    function()
+      vim.cmd('Telescope file_browser')
+      local esc_key = api.nvim_replace_termcodes('<Esc>', true, false, true)
+      api.nvim_feedkeys(esc_key, 'n', false)
+    end,
+  },
+  { '<Leader>ff', cmd('Telescope find_files find_command=rg,--ignore,--hidden,--files') },
+  { '<Leader>fg', cmd('Telescope git_files') },
+  { '<Leader>fw', cmd('Telescope grep_string') },
+  { '<Leader>fh', cmd('Telescope help_tags') },
+  { '<Leader>fo', cmd('Telescope oldfiles') },
+  { '<Leader>gc', cmd('Telescope git_commits') },
+  { '<Leader>fd', cmd('Telescope dotfiles') },
+
+  -- hop.nvim
+  { 'f', cmd('HopWordAC') },
+  { 'F', cmd('HopWordBC') },
+
+  -- template.nvim
+  -- {
+  --   '<Leader>t',
+  --   function()
+  --     return ':Template '
+  --   end,
+  --   opts(expr),
+  -- },
 })
+
+nmap({ 'gcc', cmd('ComComment') })
+xmap({ 'gcc', ':ComComment<CR>' })
+nmap({ 'gcj', cmd('ComAnnotation') })
+
+-- Lspsaga floaterminal
+nmap({ '<A-d>', cmd('Lspsaga open_floaterm') })
+tmap({ '<A-d>', [[<C-\><C-n>:Lspsaga close_floaterm<CR>]] })
+
+xmap({ 'ga', cmd('Lspsaga code_action') })

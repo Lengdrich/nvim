@@ -26,6 +26,11 @@ package({
   dependencies = { 'tpope/vim-dadbod' },
 })
 
-package({ 'coman.nvim', dev = true, event = 'BufRead' })
+package({
+  "iamcco/markdown-preview.nvim",
+  ft = {'markdown'},
+})
+
+-- package({ 'coman.nvim', dev = true, event = 'BufRead' })
 
 -- package({ 'template.nvim', dev = true, ft = { 'c', 'lua', 'go' }, config = conf.template_nvim })

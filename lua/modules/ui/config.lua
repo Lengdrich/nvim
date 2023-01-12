@@ -8,6 +8,10 @@ function config.onedarkpro()
   vim.cmd('colorscheme onedark')
 end
 
+function config.tokyonight()
+  -- vim.cmd('colorscheme tokyonight')
+end
+
 function config.dashboard()
   local db = require('dashboard')
   db.custom_center = {
@@ -45,7 +49,7 @@ function config.nvim_tree()
 end
 
 function config.galaxyline()
-  require('modules.ui.eviline')
+  require('modules.ui.bubbleline')
 end
 
 function config.indent_blankline()

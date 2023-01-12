@@ -1,47 +1,11 @@
 local config = {}
 
 function config.nvim_treesitter()
-  vim.opt.foldmethod = 'expr'
-  vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-
-  local ignored = {
-    'phpdoc',
-    'astro',
-    'arduino',
-    'beancount',
-    'bibtex',
-    'bluprint',
-    'eex',
-    'ecma',
-    'elvish',
-    'embedded_template',
-    'vala',
-    'wgsl',
-    'verilog',
-    'twig',
-    'turtle',
-    'm68k',
-    'hocon',
-    'lalrpop',
-    'ledger',
-    'meson',
-    'mehir',
-    'rasi',
-    'rego',
-    'racket',
-    'pug',
-    'java',
-    'tlaplus',
-    'supercollider',
-    'slint',
-    'sparql',
-    'rst',
-    'rnoweb',
-    'm68k',
-  }
-
+  vim.api.nvim_command('set foldmethod=expr')
+  vim.api.nvim_command('set foldexpr=nvim_treesitter#foldexpr()')
   require('nvim-treesitter.configs').setup({
-    ignore_install = ignored,
+    ensure_installed = 'all',
+    ignore_install = { 'phpdoc' },
     highlight = {
       enable = true,
     },
@@ -142,6 +106,13 @@ function config.mut_char()
       one_to_one = true,
     },
   })
+end
+
+function config.leap()
+  -- require('leap').add_default_mappings()
+  require('leap').opts.highlight_unlabeled_phase_one_targets = true
+  vim.keymap.set({'x', 'o', 'n'}, 'f', '<Plug>(leap-forward-to)')
+  vim.keymap.set({'x', 'o', 'n'}, 'F', '<Plug>(leap-backward-to)')
 end
 
 function config.hop()

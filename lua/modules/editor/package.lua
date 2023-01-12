@@ -22,14 +22,15 @@ package({
   },
 })
 
-package({ 'mutchar.nvim', dev = true, ft = { 'c', 'cpp', 'go', 'rust' }, config = conf.mut_char })
-
 package({
-  'glepnir/hlsearch.nvim',
+  'ggandor/leap.nvim',
   event = 'BufRead',
-  config = function()
-    require('hlsearch').setup()
-  end,
+  dependencies = {
+    'tpope/vim-repeat',
+  },
+  config = conf.leap,
 })
+
+-- package({ 'mutchar.nvim', dev = true, ft = { 'c', 'cpp', 'go', 'rust' }, config = conf.mut_char })
 
 package({ 'phaazon/hop.nvim', event = 'BufRead', config = conf.hop })

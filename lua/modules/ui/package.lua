@@ -5,6 +5,8 @@ package({ 'glepnir/zephyr-nvim', config = conf.zephyr })
 
 package({ 'olimorris/onedarkpro.nvim', config = conf.onedarkpro })
 
+package({ "folke/tokyonight.nvim", config = conf.tokyonight })
+
 package({ 'glepnir/dashboard-nvim', config = conf.dashboard })
 
 package({
@@ -19,7 +21,7 @@ package({ 'akinsho/nvim-bufferline.lua', config = conf.nvim_bufferline, requires
 package({
   'glepnir/galaxyline.nvim',
   config = conf.galaxyline,
-  dependencies = { 'kyazdani42/nvim-web-devicons' },
+  dependencies = { 'kyazdani42/nvim-web-devicons',},
 })
 
 local enable_indent_filetype = {
