@@ -97,11 +97,10 @@ nmap({
   { 'K', cmd('Lspsaga hover_doc') },
   { 'ga', cmd('Lspsaga code_action') },
   { 'gd', cmd('Lspsaga peek_definition') },
-  { 'gs', cmd('Lspsaga signature_help') },
+  { 'gh', cmd('Lspsaga signature_help') },
   { 'gr', cmd('Lspsaga rename') },
-  { 'gh', cmd('Lspsaga lsp_finder') },
-  { '<Leader>o', cmd('LSoutlineToggle') },
-  { '<Leader>g', cmd('Lspsaga open_floaterm lazygit') },
+  { 'gs', cmd('Lspsaga lsp_finder') },
+  { '<Leader>o', cmd('Lspsaga outline') },
 
   -- dadbodui
   { '<Leader>d', cmd('DBUIToggle') },

@@ -1,17 +1,12 @@
 local config = {}
 
 -- config server in this function
-function config.nvim_lsp() 
+function config.nvim_lsp()
   require('modules.completion.lspconfig')
 end
 
 function config.lspsaga()
-  local saga = require('lspsaga')
-  saga.init_lsp_saga({
-    symbol_in_winbar = {
-      enable = true,
-    },
-  })
+  require('lspsaga').setup({})
 end
 
 function config.nvim_cmp()
