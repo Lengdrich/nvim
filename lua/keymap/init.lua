@@ -17,7 +17,7 @@ nmap({
   -- close buffer
   { '<C-x>k', cmd('bdelete'), opts(noremap, silent) },
   -- save
-  { '<C-s>', cmd('write'), opts(noremap) },
+  { '<Leader>w', cmd('write'), opts(noremap) },
   -- yank
   { 'Y', 'y$', opts(noremap) },
   -- buffer jump
@@ -37,7 +37,7 @@ nmap({
   { '<C-u>', '9k', opts(noremap) },
   { '<C-d>', '9j', opts(noremap) },
 
-  { '<Leader>w', ':w<CR>', opts(noremap) },
+  { '<Leader>2', '$', opts(noremap) },
 
   { '<Leader>p', '"+p', opts(noremap) },
   { '<Leader>P', '"+P', opts(noremap) },
