@@ -54,7 +54,7 @@ end
 
 function config.indent_blankline()
   require('indent_blankline').setup({
-    char = '│',
+    char = '|',
     use_treesitter_scope = true,
     show_first_indent_level = true,
     show_current_context = false,
