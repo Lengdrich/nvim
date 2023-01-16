@@ -5,20 +5,14 @@ function cli:env_init()
   self.module_path = helper.path_join(self.config_path, 'lua', 'modules')
   self.lazy_dir = helper.path_join(self.data_path, 'lazy')
 
-  package.path = package.path .. ';' .. self.rtp .. '/lua/vim/?.lua;' .. self.module_path .. '/?.lua;'
+  package.path = package.path
+    .. ';'
+    .. self.rtp
+    .. '/lua/vim/?.lua;'
+    .. self.module_path
+    .. '/?.lua;'
   local shared = assert(loadfile(helper.path_join(self.rtp, 'lua', 'vim', 'shared.lua')))
   _G.vim = shared()
-end
-
-local function get_all_modules()
-  local p = io.popen('find "' .. cli.module_path .. '" -type d')
-  if not p then
-    return
-  end
-
-  for dict in p:lines() do
-    print(dict)
-  end
 end
 
 function cli:get_all_packages()
@@ -140,14 +134,15 @@ function cli.clean()
   os.execute('rm -rf ' .. cli.lazy_dir)
 end
 
-function cli.doctor()
+function cli.doctor(pack_name)
   local list = cli:get_all_packages()
   if not list then
     return
   end
 
   helper.yellow('🔹 Total: ' .. vim.tbl_count(list) + 1 .. ' Plugins')
-  for k, v in pairs(list) do
+  local packs = pack_name and { [pack_name] = list[pack_name] } or list
+  for k, v in pairs(packs) do
     helper.blue('\t' .. '✨' .. k)
     if v.type then
       helper.write('purple')('\tType: ')
@@ -169,12 +164,29 @@ function cli.doctor()
 end
 
 function cli.modules()
-  get_all_modules()
+  local p = io.popen('find "' .. cli.module_path .. '" -type d')
+  if not p then
+    return
+  end
+  local res = {}
+
+  for dict in p:lines() do
+    dict = vim.split(dict, helper.path_sep)
+    if dict[#dict] ~= 'modules' then
+      table.insert(res, dict[#dict])
+    end
+  end
+
+  helper.green('Found ' .. #res .. ' Modules in Local')
+  for _, v in pairs(res) do
+    helper.write('yellow')('\t✅ ' .. v)
+    print()
+  end
 end
 
 function cli:meta(arg)
-  return function()
-    self[arg]()
+  return function(data)
+    self[arg](data)
   end
 end
 
