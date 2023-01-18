@@ -9,11 +9,22 @@ package({ "folke/tokyonight.nvim", config = conf.tokyonight })
 
 package({ 'glepnir/dashboard-nvim', config = conf.dashboard })
 
+-- package({
+--   'kyazdani42/nvim-tree.lua',
+--   cmd = 'NvimTreeToggle',
+--   config = conf.nvim_tree,
+--   dependencies = 'kyazdani42/nvim-web-devicons',
+-- })
+
 package({
-  'kyazdani42/nvim-tree.lua',
-  cmd = 'NvimTreeToggle',
-  config = conf.nvim_tree,
-  dependencies = 'kyazdani42/nvim-web-devicons',
+  "nvim-neo-tree/neo-tree.nvim",
+  branch = "v2.x",
+  config = conf.neo_tree,
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
+    "MunifTanjim/nui.nvim",
+  }
 })
 
 package({ 'akinsho/nvim-bufferline.lua', config = conf.nvim_bufferline, requires = 'kyazdani42/nvim-web-devicons' })
@@ -41,4 +52,17 @@ package({
   'lukas-reineke/indent-blankline.nvim',
   ft = enable_indent_filetype,
   config = conf.indent_blankline,
+})
+
+package({
+  "folke/noice.nvim",
+  config = conf.noice_nvim,
+  dependencies = {
+    -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+    "MunifTanjim/nui.nvim",
+    -- OPTIONAL:
+    --   `nvim-notify` is only needed, if you want to use the notification view.
+    --   If not available, we use `mini` as the fallback
+    "rcarriga/nvim-notify",
+  }
 })
