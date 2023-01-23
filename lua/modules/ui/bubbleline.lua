@@ -25,8 +25,10 @@ local icons = {
   left_bar =      "▊ ",
   right_bar =     " ▊",
   left_bubble =   "",
+  side = "▊",
 	right_bubble =  "",
   status_left =   "  ",
+  -- space =         "    ",
   git =           "   ",
   branch =        "   ",
   add =           "  ",
@@ -42,7 +44,10 @@ local icons = {
 
 -- </> custom colors for git info
 -- --> blend(fg, bg, alpha)
+-- colors.bg = "#24283b"
+-- colors.bg_statusline = "#1f2335"
 colors.galaxy = {}
+colors.galaxy.bg =              util.blend(colors.bg, colors.bg, 0)
 colors.galaxy.git_icon_bg =     util.blend(colors.purple, colors.bg, .8)
 colors.galaxy.git_icon_fg =     util.blend(colors.fg, colors.galaxy.git_icon_bg, .8)
 colors.galaxy.branch_bg =       util.blend(colors.purple, colors.bg, .5)
@@ -222,6 +227,16 @@ gls.left[index] = {
   },
 }
 
+-- index = index + 1
+-- gls.left[index] = {
+--   SpaceInStatusLine = {
+--     highlight = { colors.bg_statusline, colors.bg_statusline },
+--     provider = function()
+--       return 
+--     end,
+--   },
+-- }
+
 -- --> mid
 index = 1
 gls.mid[index] = {
@@ -236,12 +251,13 @@ gls.mid[index] = {
 
 index = index + 1
 gls.mid[index] = {
-  ShowLspIcon = {
+  FileIcon = {
     condition = HideDashboard(),
     highlight = { colors.galaxy.lsp_icon_fg, colors.galaxy.lsp_icon_bg },
     provider = function()
       return icons.lsp_icon
     end,
+    -- provider = "FileIcon"
   },
 }
 

@@ -47,8 +47,6 @@ nmap({
 
 imap({
   -- insert mode
-  { '<C-h>', '<Bs>', opts(noremap) },
-  { '<C-e>', '<End>', opts(noremap) },
   { 'jk', '<ESC>', opts(noremap) },
   { 'Jk', '<ESC>', opts(noremap) },
   { 'JK', '<ESC>', opts(noremap) },
@@ -143,9 +141,9 @@ nmap({
   -- },
 })
 
-nmap({ 'gcc', cmd('ComComment') })
-xmap({ 'gcc', ':ComComment<CR>' })
-nmap({ 'gcj', cmd('ComAnnotation') })
+-- nmap({ 'gcc', cmd('ComComment') })
+-- xmap({ 'gcc', ':ComComment<CR>' })
+-- nmap({ 'gcj', cmd('ComAnnotation') })
 
 -- Lspsaga floaterminal
 nmap({ '<A-d>', cmd('Lspsaga open_floaterm') })
@@ -153,3 +151,4 @@ tmap({ '<A-d>', [[<C-\><C-n>:Lspsaga close_floaterm<CR>]] })
 vim.keymap.set({ 'n', 't' }, '<A-d>', cmd('Lspsaga term_toggle'))
 
 xmap({ 'ga', cmd('Lspsaga code_action') })
+

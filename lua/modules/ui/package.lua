@@ -7,6 +7,8 @@ package({ 'olimorris/onedarkpro.nvim', config = conf.onedarkpro })
 
 package({ "folke/tokyonight.nvim", config = conf.tokyonight })
 
+package({"ellisonleao/gruvbox.nvim", config = conf.gruvbox})
+
 package({ 'glepnir/dashboard-nvim', config = conf.dashboard })
 
 -- package({
@@ -66,3 +68,4 @@ package({
     "rcarriga/nvim-notify",
   }
 })
+
