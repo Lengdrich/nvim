@@ -110,9 +110,15 @@ end
 
 function config.leap()
   -- require('leap').add_default_mappings()
-  require('leap').opts.highlight_unlabeled_phase_one_targets = true
+  -- require('leap').opts.highlight_unlabeled_phase_one_targets = true
   vim.keymap.set({'x', 'o', 'n'}, 'f', '<Plug>(leap-forward-to)')
   vim.keymap.set({'x', 'o', 'n'}, 'F', '<Plug>(leap-backward-to)')
+
+  require('leap').setup({
+    safe_labels = {
+      'f', 'n', 'u', 'm','t', '/', 'S', 'F', 'N', 'L', 'H', 'M', 'U', 'G', 'T', '?', 'Z',
+    }
+  })
 end
 
 function config.hop()
