@@ -38,56 +38,35 @@ end
 
 function config.dashboard()
   local db = require('dashboard')
-  local z = require('zephyr')
-  db.session_directory = vim.env.HOME .. '/.cache/nvim/session'
-  db.preview_command = 'cat | lolcat -F 0.3'
-  db.preview_file_path = vim.env.HOME .. '/.config/nvim/static/neovim.cat'
-  db.preview_file_height = 11
-  db.preview_file_width = 70
-  db.custom_center = {
-    {
-      icon = '  ',
-      icon_hl = { fg = z.red },
-      desc = 'Update Plugins                          ',
-      shortcut = 'SPC p u',
-      action = 'Lazy update',
+  db.setup({
+    theme = 'hyper',
+    config = {
+      week_header = {
+       enable = true,
+      },
+      shortcut = {
+        { desc = ' Update', group = '@property', action = 'Lazy update', key = 'u' },
+        {
+          desc = ' Files',
+          group = 'Label',
+          action = 'Telescope find_files',
+          key = 'f',
+        },
+        {
+          desc = ' Apps',
+          group = 'DiagnosticHint',
+          action = 'Telescope app',
+          key = 'a',
+        },
+        {
+          desc = ' dotfiles',
+          group = 'Number',
+          action = 'Telescope dotfiles',
+          key = 'd',
+        },
+      },
     },
-    {
-      icon = '  ',
-      icon_hl = { fg = z.yellow },
-      desc = 'Recently opened files                   ',
-      action = 'Telescope oldfiles',
-      shortcut = 'SPC f h',
-    },
-    {
-      icon = '  ',
-      icon_hl = { fg = z.cyan },
-      desc = 'Find  File                              ',
-      action = 'Telescope find_files find_command=rg,--hidden,--files',
-      shortcut = 'SPC f f',
-    },
-    {
-      icon = '  ',
-      icon_hl = { fg = z.blue },
-      desc = 'File Browser                            ',
-      action = 'Telescope file_browser',
-      shortcut = 'SPC   e',
-    },
-    {
-      icon = '  ',
-      icon_hl = { fg = z.oragne },
-      desc = 'Find  word                              ',
-      action = 'Telescope live_grep',
-      shortcut = 'SPC f b',
-    },
-    {
-      icon = '  ',
-      icon_hl = { fg = z.redwine },
-      desc = 'Open Personal dotfiles                  ',
-      action = 'Telescope dotfiles path=' .. vim.env.HOME .. '/.dotfiles',
-      shortcut = 'SPC f d',
-    },
-  }
+  })
 end
 
 function config.nvim_bufferline()
@@ -241,6 +220,37 @@ function config.noice_nvim()
       long_message_to_split = true, -- long messages will be sent to a split
       inc_rename = false, -- enables an input dialog for inc-rename.nvim
       lsp_doc_border = false, -- add a border to hover docs and signature help
+    },
+  })
+end
+
+function config.gitsigns()
+  require('gitsigns').setup({
+    signs = {
+      add = { hl = 'GitGutterAdd', text = '▍' },
+      change = { hl = 'GitGutterChange', text = '▍' },
+      delete = { hl = 'GitGutterDelete', text = '▍' },
+      topdelete = { hl = 'GitGutterDeleteChange', text = '▔' },
+      changedelete = { hl = 'GitGutterChange', text = '▍' },
+      untracked = { hl = 'GitGutterAdd', text = '▍' },
+    },
+    keymaps = {
+      -- Default keymap options
+      noremap = true,
+      buffer = true,
+
+      ['n ]g'] = { expr = true, "&diff ? ']g' : '<cmd>lua require\"gitsigns\".next_hunk()<CR>'" },
+      ['n [g'] = { expr = true, "&diff ? '[g' : '<cmd>lua require\"gitsigns\".prev_hunk()<CR>'" },
+
+      ['n <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
+      ['n <leader>hu'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
+      ['n <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
+      ['n <leader>hp'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
+      ['n <leader>hb'] = '<cmd>lua require"gitsigns".blame_line()<CR>',
+
+      -- Text objects
+      ['o ih'] = ':<C-U>lua require"gitsigns".text_object()<CR>',
+      ['x ih'] = ':<C-U>lua require"gitsigns".text_object()<CR>',
     },
   })
 end

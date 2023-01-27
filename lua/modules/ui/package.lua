@@ -11,6 +11,14 @@ package({"ellisonleao/gruvbox.nvim", config = conf.gruvbox})
 
 -- package({ 'glepnir/dashboard-nvim', event = 'VimEnter', config = conf.dashboard })
 
+package({
+  'glepnir/dashboard-nvim',
+  event = 'VimEnter',
+  config = conf.dashboard,
+  dependencies = {
+    'nvim-tree/nvim-web-devicons'
+  }
+})
 -- package({
 --   'kyazdani42/nvim-tree.lua',
 --   cmd = 'NvimTreeToggle',
@@ -29,7 +37,11 @@ package({
   }
 })
 
-package({ 'akinsho/nvim-bufferline.lua', config = conf.nvim_bufferline, requires = 'kyazdani42/nvim-web-devicons' })
+package({ 
+  'akinsho/nvim-bufferline.lua', 
+  config = conf.nvim_bufferline, 
+  requires = 'kyazdani42/nvim-web-devicons' 
+})
 
 package({
   'glepnir/galaxyline.nvim',
@@ -69,3 +81,8 @@ package({
   }
 })
 
+package({
+  'lewis6991/gitsigns.nvim',
+  event = { 'BufRead', 'BufNewFile' },
+  config = conf.gitsigns,
+})
