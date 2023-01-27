@@ -9,7 +9,7 @@ package({ "folke/tokyonight.nvim", config = conf.tokyonight })
 
 package({"ellisonleao/gruvbox.nvim", config = conf.gruvbox})
 
-package({ 'glepnir/dashboard-nvim', config = conf.dashboard })
+-- package({ 'glepnir/dashboard-nvim', event = 'VimEnter', config = conf.dashboard })
 
 -- package({
 --   'kyazdani42/nvim-tree.lua',

@@ -83,9 +83,9 @@ nmap({
   -- neotree
   { '<C-n>', cmd('Neotree toggle'), opts(noremap, silent) },
   -- Telescope
-  { '<Leader>b', cmd('Telescope buffers'), opts(noremap, silent) },
-  { '<Leader>fa', cmd('Telescope live_grep'), opts(noremap, silent) },
-  { '<Leader>ff', cmd('Telescope find_files'), opts(noremap, silent) },
+  -- { '<Leader>b', cmd('Telescope buffers'), opts(noremap, silent) },
+  -- { '<Leader>fa', cmd('Telescope live_grep'), opts(noremap, silent) },
+  -- { '<Leader>ff', cmd('Telescope find_files'), opts(noremap, silent) },
   -- Lsp
   { '<Leader>li', cmd('LspInfo') },
   { '<Leader>ll', cmd('LspLog') },
@@ -119,7 +119,7 @@ nmap({
       api.nvim_feedkeys(esc_key, 'n', false)
     end,
   },
-  { '<Leader>ff', cmd('Telescope find_files find_command=rg,--ignore,--hidden,--files') },
+  { '<Leader>ff', cmd('Telescope find_files find_command=rg,--ignore,--hidden,--files  prompt_prefix=🔍') },
   { '<Leader>fg', cmd('Telescope git_files') },
   { '<Leader>fw', cmd('Telescope grep_string') },
   { '<Leader>fh', cmd('Telescope help_tags') },
