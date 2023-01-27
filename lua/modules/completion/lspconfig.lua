@@ -44,30 +44,33 @@ lspconfig.gopls.setup({
 })
 
 lspconfig.sumneko_lua.setup({
-  on_attach = function(client, _)
-    client.server_capabilities.semanticTokensProvider = nil
-  end,
+  -- on_attach = function(client, _)
+  --   client.server_capabilities.semanticTokensProvider = nil
+  -- end,
   capabilities = capabilities,
   settings = {
     Lua = {
-      diagnostics = {
-        enable = true,
-        globals = { 'vim' },
+      -- diagnostics = {
+      --   enable = true,
+      --   globals = { 'vim' },
+      -- },
+      runtime = {
+        version = 'LuaJIT',
+        path = vim.split(package.path, ';'),
       },
-      runtime = { version = 'LuaJIT' },
-      workspace = {
-        library = (function()
-          local lib = {}
-          for _, path in ipairs(vim.api.nvim_get_runtime_file('lua', true)) do
-            lib[#lib + 1] = path:sub(1, -5)
-          end
-          return lib
-        end)(),
-        checkThirdParty = false,
-      },
-      telemetry = {
-        enable = false,
-      },
+      -- workspace = {
+      --   library = {
+      --     vim.env.VIMRUNTIME,
+      --   },
+      --   checkThirdParty = false,
+      -- },
+      -- completion = {
+      --   callSnippet = 'Replace',
+      --   keywordSnippet = 'Disable',
+      -- },
+      -- telemetry = {
+      --   enable = false,
+      -- },
     },
   },
 })

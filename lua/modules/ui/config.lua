@@ -9,7 +9,19 @@ function config.onedarkpro()
 end
 
 function config.tokyonight()
-  -- vim.cmd('colorscheme tokyonight')
+  require("tokyonight").setup({
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    style = "moon", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
+    styles = {
+      -- Style to be applied to different syntax groups
+      -- Value is any valid attr-list value for `:help nvim_set_hl`
+      comments = { italic = false },
+      keywords = { italic = false },
+    },
+  })
+
+  vim.cmd('colorscheme tokyonight')
 end
 
 function config.gruvbox()
@@ -33,7 +45,7 @@ function config.gruvbox()
     },
   })
 
-  vim.cmd('colorscheme gruvbox')
+  -- vim.cmd('colorscheme gruvbox')
 end
 
 function config.dashboard()

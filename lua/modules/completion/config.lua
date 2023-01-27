@@ -5,6 +5,18 @@ function config.nvim_lsp()
   require('modules.completion.lspconfig')
 end
 
+function config.mason_nvim()
+  require("mason").setup({
+      ui = {
+          icons = {
+              package_installed = "✓",
+              package_pending = "➜",
+              package_uninstalled = "✗"
+          }
+      }
+  })
+end
+
 function config.lspsaga()
   require('lspsaga').setup({})
 end
