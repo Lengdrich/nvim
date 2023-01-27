@@ -64,8 +64,6 @@ vmap({
   { '<Leader>P', '"+P', opts(noremap) },
   { '<Leader>y', '"+y', opts(noremap) },
   { '<Leader>Y', '"+Y', opts(noremap) },
-  -- { 'JK', '<ESC>', opts(noremap) },
-  -- { 'JK', '<ESC>', opts(noremap) },
 
   { '<', '<gv', opts(noremap) },
   { '>', '>gv', opts(noremap) },
@@ -76,16 +74,15 @@ nmap({
   -- Lazy
   { '<Leader>pu', cmd('Lazy update') },
   { '<Leader>pi', cmd('Lazy install') },
+
   -- dashboard
   { '<Leader>n', cmd('DashboardNewFile'), opts(noremap, silent) },
   { '<Leader>ss', cmd('SessionSave'), opts(noremap, silent) },
   { '<Leader>sl', cmd('SessionLoad'), opts(noremap, silent) },
+
   -- neotree
   { '<C-n>', cmd('Neotree toggle'), opts(noremap, silent) },
-  -- Telescope
-  -- { '<Leader>b', cmd('Telescope buffers'), opts(noremap, silent) },
-  -- { '<Leader>fa', cmd('Telescope live_grep'), opts(noremap, silent) },
-  -- { '<Leader>ff', cmd('Telescope find_files'), opts(noremap, silent) },
+
   -- Lsp
   { '<Leader>li', cmd('LspInfo') },
   { '<Leader>ll', cmd('LspLog') },
@@ -127,10 +124,6 @@ nmap({
   { '<Leader>gc', cmd('Telescope git_commits') },
   { '<Leader>fd', cmd('Telescope dotfiles') },
 
-  -- hop.nvim
-  -- { 'f', cmd('HopWordAC') },
-  -- { 'F', cmd('HopWordBC') },
-
   -- template.nvim
   -- {
   --   '<Leader>t',
@@ -140,10 +133,6 @@ nmap({
   --   opts(expr),
   -- },
 })
-
--- nmap({ 'gcc', cmd('ComComment') })
--- xmap({ 'gcc', ':ComComment<CR>' })
--- nmap({ 'gcj', cmd('ComAnnotation') })
 
 -- Lspsaga floaterminal
 nmap({ '<A-d>', cmd('Lspsaga open_floaterm') })
