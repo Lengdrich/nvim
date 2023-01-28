@@ -10,42 +10,26 @@ end
 
 function config.tokyonight()
   require("tokyonight").setup({
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
     style = "moon", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
     styles = {
-      -- Style to be applied to different syntax groups
-      -- Value is any valid attr-list value for `:help nvim_set_hl`
       comments = { italic = false },
       keywords = { italic = false },
     },
   })
 
-  vim.cmd('colorscheme tokyonight')
+  -- vim.cmd('colorscheme tokyonight')
 end
 
 function config.gruvbox()
   require('gruvbox').setup({
-    undercurl = true,
-    underline = true,
-    bold = true,
     italic = false,
-    strikethrough = true,
-    invert_selection = false,
-    invert_signs = false,
-    invert_tabline = false,
-    invert_intend_guides = false,
-    inverse = true, -- invert background for search, diffs, statuslines and errors
-    contrast = "", -- can be "hard", "soft" or empty string
-    palette_overrides = {},
-    dim_inactive = false,
-    transparent_mode = false,
     overrides = {
-      String = {fg = "#00a000"}
+      String = { fg = "#00a000" },
+      StatusLine = { fg = "#1f2335" }
     },
   })
 
-  -- vim.cmd('colorscheme gruvbox')
+  vim.cmd('colorscheme gruvbox')
 end
 
 function config.dashboard()
@@ -90,14 +74,6 @@ function config.nvim_bufferline()
     },
   })
 end
-
--- function config.nvim_tree()
---   require('nvim-tree').setup({
---     disable_netrw = false,
---     hijack_cursor = true,
---     hijack_netrw = true,
---   })
--- end
 
 function config.neo_tree()
 
