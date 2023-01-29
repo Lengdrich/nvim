@@ -124,6 +124,9 @@ nmap({
   { '<Leader>gc', cmd('Telescope git_commits') },
   { '<Leader>fd', cmd('Telescope dotfiles') },
 
+  -- aerial
+  {'<Leader>ao', cmd('AerialToggle')}
+
   -- template.nvim
   -- {
   --   '<Leader>t',

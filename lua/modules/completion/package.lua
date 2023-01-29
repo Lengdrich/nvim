@@ -11,12 +11,14 @@ package({
 
 package({
   "williamboman/mason.nvim",
+  cmd = 'Mason',
   config = conf.mason_nvim,
 })
 
 package({
   "glepnir/lspsaga.nvim",
   branch = "main",
+  event = 'BufRead',
   config = conf.lspsaga,
 })
 

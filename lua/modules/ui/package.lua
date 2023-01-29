@@ -29,6 +29,7 @@ package({
 package({
   "nvim-neo-tree/neo-tree.nvim",
   branch = "v2.x",
+  cmd = 'Neotree toggle',
   config = conf.neo_tree,
   dependencies = {
     "nvim-lua/plenary.nvim",

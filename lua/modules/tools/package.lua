@@ -28,8 +28,13 @@ package({
 package({
   'numToStr/Comment.nvim',
   config = conf.comment,
-  event = BufRead,
+  event = 'BufRead',
   -- config = function()
   --   require('Comment').setup({})
   -- end
 })
+
+-- package({
+--   'mfussenegger/nvim-dap',
+--
+-- })

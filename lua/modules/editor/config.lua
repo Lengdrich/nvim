@@ -121,10 +121,12 @@ function config.leap()
   })
 end
 
-function config.hop()
-  local hop = require('hop')
-  hop.setup({
-    keys = 'asdghklqwertyuiopzxcvbnmfj',
+function config.aerial()
+  require('aerial').setup({
+    keymaps = {
+      ["o"] = "actions.jump",
+      ["<CR>"] = "actions.jump",
+    },
   })
 end
 

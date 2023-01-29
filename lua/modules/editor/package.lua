@@ -34,3 +34,9 @@ package({
 -- package({ 'mutchar.nvim', dev = true, ft = { 'c', 'cpp', 'go', 'rust' }, config = conf.mut_char })
 
 -- package({ 'phaazon/hop.nvim', event = 'BufRead', config = conf.hop })
+--
+package({
+  'stevearc/aerial.nvim',
+  cmd = 'AerialToggle',
+  config = conf.aerial,
+})
