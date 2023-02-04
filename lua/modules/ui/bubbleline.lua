@@ -227,16 +227,6 @@ gls.left[index] = {
   },
 }
 
--- index = index + 1
--- gls.left[index] = {
---   SpaceInStatusLine = {
---     highlight = { colors.bg_statusline, colors.bg_statusline },
---     provider = function()
---       return 
---     end,
---   },
--- }
-
 -- --> mid
 index = 1
 gls.mid[index] = {
