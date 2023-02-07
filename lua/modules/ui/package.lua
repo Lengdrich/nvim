@@ -16,7 +16,7 @@ package({
   event = 'VimEnter',
   config = conf.dashboard,
   dependencies = {
-    'nvim-tree/nvim-web-devicons'
+    'kyazdani42/nvim-web-devicons'
   }
 })
 -- package({
