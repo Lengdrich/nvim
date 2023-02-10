@@ -34,8 +34,8 @@ nmap({
   -- 
   { '<C-k>', '<C-w>k', opts(noremap) },
 
-  { '<C-u>', '9k', opts(noremap) },
-  { '<C-d>', '9j', opts(noremap) },
+  -- { '<C-u>', '9k', opts(noremap) },
+  -- { '<C-d>', '9j', opts(noremap) },
 
   { '<Leader>2', '$', opts(noremap) },
 
