@@ -47,9 +47,9 @@ nmap({
 
 imap({
   -- insert mode
-  { 'jk', '<ESC>', opts(noremap) },
-  { 'Jk', '<ESC>', opts(noremap) },
-  { 'JK', '<ESC>', opts(noremap) },
+  -- { 'jk', '<ESC>', opts(noremap) },
+  -- { 'Jk', '<ESC>', opts(noremap) },
+  -- { 'JK', '<ESC>', opts(noremap) },
   { '<C-h>', '<Left>', opts(noremap) },
   { '<C-j>', '<Down>', opts(noremap) },
   { '<C-k>', '<Up>', opts(noremap) },

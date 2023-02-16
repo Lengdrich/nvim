@@ -91,5 +91,9 @@ function config.comment()
   })
 end
 
+function config.fcitx()
+  -- require('fcitx').setup({})
+end
+
 return config
 

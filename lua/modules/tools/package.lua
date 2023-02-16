@@ -34,7 +34,8 @@ package({
   -- end
 })
 
--- package({
---   'mfussenegger/nvim-dap',
---
--- })
+package({ 
+  'Lengdrich/fcitx.nvim', 
+  config = conf.fcitx,
+  event = 'InsertEnter',
+})

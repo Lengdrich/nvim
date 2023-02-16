@@ -16,7 +16,7 @@ opt.spellfile = cache_dir .. 'spell/en.uft-8.add'
 opt.history = 2000
 opt.timeout = true
 opt.ttimeout = true
-opt.timeoutlen = 500
+opt.timeoutlen = 300
 opt.ttimeoutlen = 10
 opt.updatetime = 100
 opt.redrawtime = 1500
@@ -104,3 +104,4 @@ if vim.loop.os_uname().sysname == 'wsl2' then
   vim.g.python_host_prog = '/usr/bin/python'
   vim.g.python3_host_prog = '/usr/local/bin/python3'
 end
+
