@@ -50,6 +50,8 @@ package({
   dependencies = { 'kyazdani42/nvim-web-devicons',},
 })
 
+-- package({ 'feline-nvim/feline.nvim', config = conf.feline_config, })
+
 local enable_indent_filetype = {
   'go',
   'lua',

@@ -153,6 +153,10 @@ function config.galaxyline()
   require('modules.ui.bubbleline')
 end
 
+function config.feline_config()
+  require('modules.ui.feline_config')
+end
+
 function config.indent_blankline()
   require('indent_blankline').setup({
     char = '|',
