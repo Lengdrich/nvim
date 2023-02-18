@@ -56,7 +56,7 @@ function config.comment()
     ---LHS of toggle mappings in NORMAL mode
     toggler = {
         ---Line-comment toggle keymap
-        line = '<C-/>',
+        line = '<C-_>',
         ---Block-comment toggle keymap
         block = 'gbc',
     },
