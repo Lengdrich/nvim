@@ -4,14 +4,16 @@ function config.zephyr()
   -- vim.cmd('colorscheme zephyr')
 end
 
-function config.onedarkpro()
-  require("onedarkpro").setup({
+function config.onedark()
+  require('onedark').setup({
+    style = 'deep',
+    colors = {
+    },
     highlights = {
       StatusLine = { bg = "#1f2335" }
-    }
+    },
   })
-
-  -- vim.cmd('colorscheme onedark')
+  vim.cmd('colorscheme onedark')
 end
 
 function config.tokyonight()
@@ -35,7 +37,7 @@ function config.gruvbox()
     },
   })
 
-  vim.cmd('colorscheme gruvbox')
+  -- vim.cmd('colorscheme gruvbox')
 end
 
 function config.dashboard()

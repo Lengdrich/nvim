@@ -3,7 +3,7 @@ local conf = require('modules.ui.config')
 
 package({ 'glepnir/zephyr-nvim', config = conf.zephyr })
 
-package({ 'olimorris/onedarkpro.nvim', config = conf.onedarkpro })
+package({ 'navarasu/onedark.nvim', config = conf.onedark})
 
 package({ "folke/tokyonight.nvim", config = conf.tokyonight })
 
