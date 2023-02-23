@@ -67,6 +67,7 @@ vmap({
 
   { '<', '<gv', opts(noremap) },
   { '>', '>gv', opts(noremap) },
+  { '<Leader>2', '$', opts(noremap) },
 })
 
 -- usage of plugins

@@ -34,8 +34,13 @@ package({
   -- end
 })
 
-package({ 
-  'Lengdrich/fcitx.nvim', 
+package({
+  'Lengdrich/fcitx.nvim',
   config = conf.fcitx,
   event = 'InsertEnter',
 })
+
+-- package({
+--     "aserowy/tmux.nvim",
+--     config = conf.tmux_nvim,
+-- })

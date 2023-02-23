@@ -63,7 +63,7 @@ function config.comment()
     ---LHS of operator-pending mappings in NORMAL and VISUAL mode
     opleader = {
         ---Line-comment keymap
-        line = '<C-/>',
+        line = '<C-_>',
         ---Block-comment keymap
         block = 'gb',
     },
@@ -93,6 +93,10 @@ end
 
 function config.fcitx()
   -- require('fcitx').setup({})
+end
+
+function config.tmux_nvim()
+  require('tmux').setup({})
 end
 
 return config
