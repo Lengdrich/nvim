@@ -41,6 +41,6 @@ package({
 })
 
 -- package({
---     "aserowy/tmux.nvim",
---     config = conf.tmux_nvim,
+--   'christoomey/vim-tmux-navigator',
+--   config = conf.tmux_nvim(),
 -- })

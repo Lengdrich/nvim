@@ -96,7 +96,6 @@ function config.fcitx()
 end
 
 function config.tmux_nvim()
-  require('tmux').setup({})
 end
 
 return config
