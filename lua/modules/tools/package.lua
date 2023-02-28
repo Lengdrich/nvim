@@ -40,7 +40,7 @@ package({
   event = 'InsertEnter',
 })
 
--- package({
---   'christoomey/vim-tmux-navigator',
---   config = conf.tmux_nvim(),
--- })
+package({
+  'alexghergh/nvim-tmux-navigation',
+  config = conf.tmux_nvim,
+})

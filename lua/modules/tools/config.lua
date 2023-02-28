@@ -96,6 +96,9 @@ function config.fcitx()
 end
 
 function config.tmux_nvim()
+  require('nvim-tmux-navigation').setup({
+    disable_when_zoomed = true, -- defaults to false
+  })
 end
 
 return config
