@@ -10,10 +10,10 @@ function config.onedark()
     colors = {
     },
     highlights = {
-      StatusLine = { bg = "#1f2335" }
+      StatusLine = { bg = "#1f2335" },
     },
   })
-  vim.cmd('colorscheme onedark')
+  -- vim.cmd('colorscheme onedark')
 end
 
 function config.tokyonight()
@@ -37,7 +37,7 @@ function config.gruvbox()
     },
   })
 
-  -- vim.cmd('colorscheme gruvbox')
+  vim.cmd('colorscheme gruvbox')
 end
 
 function config.dashboard()
@@ -155,10 +155,6 @@ function config.galaxyline()
   require('modules.ui.bubbleline')
 end
 
-function config.feline_config()
-  require('modules.ui.feline_config')
-end
-
 function config.indent_blankline()
   require('indent_blankline').setup({
     char = '|',
@@ -199,6 +195,15 @@ function config.indent_blankline()
       'while',
       'for',
     },
+  })
+end
+
+function config.mini_indentscope()
+  require("mini.indentscope").setup({
+    options = {
+      try_as_border = true
+    },
+    symbol = "│",
   })
 end
 
