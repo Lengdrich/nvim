@@ -1,7 +1,7 @@
 local api = vim.api
 local au = api.nvim_create_autocmd
 local group = vim.api.nvim_create_augroup('GlepnirGroup', {})
-
+--
 au('BufWritePre', {
   group = group,
   pattern = { '/tmp/*', 'COMMIT_EDITMSG', 'MERGE_MSG', '*.tmp', '*.bak' },
@@ -39,20 +39,20 @@ au('FileType', {
 })
 
 --for alacritty only
-au('ExitPre', {
-  group = group,
-  command = 'set guicursor=a:ver90',
-  desc = 'Set cursor back to beam when leaving Neovim.',
-})
+-- au('ExitPre', {
+--   group = group,
+--   command = 'set guicursor=a:ver90',
+--   desc = 'Set cursor back to beam when leaving Neovim.',
+-- })
 
-au('TermOpen', {
-  group = group,
-  callback = function()
-    vim.opt_local.stc = ''
-    vim.wo.number = false
-    vim.cmd.startinsert()
-  end,
-})
+-- au('TermOpen', {
+--   group = group,
+--   callback = function()
+--     vim.opt_local.stc = ''
+--     vim.wo.number = false
+--     vim.cmd.startinsert()
+--   end,
+-- })
 
 au('InsertEnter', {
   group = group,
@@ -78,11 +78,11 @@ local function reset_timer()
   timer = nil
 end
 
-au('VimEnter', {
-  callback = function()
-    vim.fn.setreg('"0', '')
-  end,
-})
+-- au('VimEnter', {
+--   callback = function()
+--     vim.fn.setreg('"0', '')
+--   end,
+-- })
 
 au('LspDetach', {
   callback = function(args)
@@ -103,19 +103,19 @@ au('LspDetach', {
   desc = 'Auto stop client when no buffer atttached',
 })
 
-au('InsertLeave', {
-  callback = function()
-    if vim.fn.executable('iswitch') == 0 then
-      return
-    end
-    vim.system({ 'iswitch', '-s', 'com.apple.keylayout.ABC' }, nil, function(proc)
-      if proc.code ~= 0 then
-        api.nvim_err_writeln('Failed to switch input source: ' .. proc.stderr)
-      end
-    end)
-  end,
-  desc = 'auto switch to abc input',
-})
+-- au('InsertLeave', {
+--   callback = function()
+--     if vim.fn.executable('iswitch') == 0 then
+--       return
+--     end
+--     vim.system({ 'iswitch', '-s', 'com.apple.keylayout.ABC' }, nil, function(proc)
+--       if proc.code ~= 0 then
+--         api.nvim_err_writeln('Failed to switch input source: ' .. proc.stderr)
+--       end
+--     end)
+--   end,
+--   desc = 'auto switch to abc input',
+-- })
 
 au('FileType', {
   pattern = 'netrw',

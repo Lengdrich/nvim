@@ -16,7 +16,7 @@ packadd({
 packadd({
   'nvimdev/lspsaga.nvim',
   event = 'LspAttach',
-  dev = true,
+  -- dev = true,
   config = function()
     require('lspsaga').setup({
       ui = { use_nerd = false },

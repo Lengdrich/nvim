@@ -77,6 +77,12 @@ lspconfig.rust_analyzer.setup({
       procMacro = {
         enable = true,
       },
+      -- Add clippy lints for Rust.
+      checkOnSave = {
+        allFeatures = true,
+        command = 'clippy',
+        extraArgs = { '--no-deps' },
+      },
     },
   },
 })

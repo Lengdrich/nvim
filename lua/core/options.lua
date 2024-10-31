@@ -3,9 +3,10 @@ local api, opt = vim.api, vim.opt
 opt.hidden = true
 opt.magic = true
 opt.virtualedit = 'block'
-opt.clipboard = 'unnamedplus'
 opt.wildignorecase = true
 opt.swapfile = false
+
+opt.cmdheight = 0
 
 opt.history = 1000
 opt.timeout = true
@@ -57,18 +58,3 @@ opt.spelloptions = 'camel'
 
 opt.textwidth = 80
 opt.colorcolumn = '+0'
-
-if vim.uv.os_uname().sysname == 'Darwin' then
-  vim.g.clipboard = {
-    name = 'macOS-clipboard',
-    copy = {
-      ['+'] = 'pbcopy',
-      ['*'] = 'pbcopy',
-    },
-    paste = {
-      ['+'] = 'pbpaste',
-      ['*'] = 'pbpaste',
-    },
-    cache_enabled = 0,
-  }
-end
