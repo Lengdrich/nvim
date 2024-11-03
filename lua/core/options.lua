@@ -20,7 +20,7 @@ opt.smartcase = true
 opt.infercase = true
 opt.cursorline = true
 
-opt.completeopt = 'menu,menuone,noinsert,fuzzy,popup'
+opt.completeopt = 'menu,menuone,fuzzy,popup,noselect'
 opt.showmode = false
 opt.shortmess = 'aoOTIcF'
 opt.scrolloff = 2
@@ -53,7 +53,7 @@ opt.splitright = true
 opt.wrap = false
 
 opt.number = true
-opt.signcolumn = 'yes'
+opt.signcolumn = 'no'
 opt.spelloptions = 'camel'
 
 opt.textwidth = 80

@@ -21,7 +21,7 @@ au('BufEnter', {
   callback = function()
     require('keymap')
     require('internal.buffer')
-    vim.cmd.packadd('nohlsearch')
+    -- vim.cmd.packadd('nohlsearch')
   end,
   desc = 'Lazy load my keymap and buffer relate commands and defaul opt plugins',
 })

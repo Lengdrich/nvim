@@ -15,6 +15,8 @@ local colors = {
   blue = '#268bd2',
   cyan = '#2aa198',
   green = '#84a800',
+  purple = '#6c71c4',
+  magenta = '#d33682',
   -- Custom modifications
   fg = '#b6b6b6', -- Brighter foreground
 }
@@ -33,8 +35,8 @@ local function load_solarized()
   shl('Comment', { fg = colors.base01, italic = true })
   shl('String', { fg = colors.cyan })
   shl('Function', { fg = colors.blue })
-  shl('Keyword', { fg = colors.green, bold = true })
-  shl('Constant', { fg = colors.violet })
+  shl('Keyword', { fg = colors.purple, bold = true })
+  shl('Constant', { fg = colors.magenta })
   shl('Identifier', { fg = colors.blue })
   shl('Statement', { fg = colors.green })
   shl('Number', { link = 'Constant' })

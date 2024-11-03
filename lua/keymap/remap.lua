@@ -24,6 +24,7 @@ map.n({
   ['<leader>y'] = '"+y',
   ['<leader>yy'] = '"+yy',
   ['<leader>2'] = '$',
+  ['<leader>p'] = '"+p',
 
   -- map("v", "<Leader>y", '"+y')
   -- map("v", "<Leader>p", '"+p')
