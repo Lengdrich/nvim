@@ -43,8 +43,8 @@ map.i({
   ['<C-a>'] = '<Esc>^i',
   ['<C-k>'] = '<C-o>d$',
   ['<C-s>'] = '<ESC>:w<CR>',
-  ['<C-n>'] = '<Down>',
-  ['<C-p>'] = '<Up>',
+  -- ['<C-n>'] = '<Down>',
+  -- ['<C-p>'] = '<Up>',
   --down/up
   ['<C-j>'] = '<C-o>o',
   ['<C-l>'] = '<C-o>O',
@@ -67,3 +67,18 @@ map.t({
   ['<Esc>'] = [[<C-\><C-n>]],
   ['<C-x>k'] = cmd('quit'),
 })
+
+map.i('<C-y>', function()
+  if tonumber(vim.fn.pumvisible()) == 1 or vim.fn.getreg('"0'):find('%w') == nil then
+    return '<C-y>'
+  end
+  return '<Esc>p==a'
+end, { expr = true })
+
+map.i('<CR>', function()
+  if tonumber(vim.fn.pumvisible()) == 1 then
+    return '<C-y>'
+  else
+    return _G.PairMate.cr()
+  end
+end, { expr = true })
