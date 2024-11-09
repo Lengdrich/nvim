@@ -111,8 +111,7 @@ local debounce_fn = function()
 end
 
 local debounce_feedkey = debounce_fn()
---
--- -- completion for directory and files
+-- completion for directory and files
 au(InsertCharPre, {
   callback = function(args)
     if pumvisible() then
