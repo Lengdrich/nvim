@@ -53,7 +53,7 @@ opt.splitright = true
 opt.wrap = false
 
 opt.number = true
-opt.signcolumn = 'no'
+opt.signcolumn = 'yes'
 opt.spelloptions = 'camel'
 
 opt.textwidth = 80
