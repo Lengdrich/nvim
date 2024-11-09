@@ -110,7 +110,7 @@ local debounce_fn = function()
   end
 end
 
--- local debounce_feedkey = debounce_fn()
+local debounce_feedkey = debounce_fn()
 --
 -- -- completion for directory and files
 au(InsertCharPre, {
