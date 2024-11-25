@@ -2,7 +2,7 @@ local conf = require('modules.ui.config')
 
 packadd({
   'nvimdev/modeline.nvim',
-  event = { 'BufReadPost */*' },
+  event = { 'BufReadPost */*', 'BufNewFile' },
   config = function()
     require('modeline').setup()
   end,
