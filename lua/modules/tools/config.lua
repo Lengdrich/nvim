@@ -3,8 +3,8 @@ local config = {}
 function config.template_nvim()
   require('template').setup({
     temp_dir = '~/.config/nvim/template',
-    author = 'glepnir',
-    email = 'glephunter@gmail.com',
+    author = 'lengfaxin',
+    email = 'fxleng@gmail.com',
   })
   require('telescope').load_extension('find_template')
 end
