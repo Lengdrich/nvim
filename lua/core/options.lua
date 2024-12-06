@@ -1,8 +1,9 @@
-local api, opt = vim.api, vim.opt
+local opt = vim.opt
 
 opt.hidden = true
 opt.magic = true
 opt.virtualedit = 'block'
+opt.clipboard = 'unnamedplus'
 opt.wildignorecase = true
 opt.swapfile = false
 
@@ -36,8 +37,6 @@ opt.list = true
 
 --eol:¬
 opt.listchars = 'tab:» ,nbsp:+,trail:·,extends:→,precedes:←,'
-opt.pumblend = 10
-opt.winblend = 0
 opt.undofile = true
 
 opt.smarttab = true
@@ -58,3 +57,18 @@ opt.spelloptions = 'camel'
 
 opt.textwidth = 80
 opt.colorcolumn = '+0'
+
+if vim.uv.os_uname().sysname == 'Darwin' then
+  vim.g.clipboard = {
+    name = 'macOS-clipboard',
+    copy = {
+      ['+'] = 'pbcopy',
+      ['*'] = 'pbcopy',
+    },
+    paste = {
+      ['+'] = 'pbpaste',
+      ['*'] = 'pbpaste',
+    },
+    cache_enabled = 0,
+  }
+end
