@@ -2,7 +2,7 @@
 -- violet    #6c71c4
 local colors = {
   base04 = '#00202b',
-  base03 = '#002837',
+  base03 = '#002b36',
   base02 = '#073642',
   base01 = '#586e75',
   base00 = '#657b83',
