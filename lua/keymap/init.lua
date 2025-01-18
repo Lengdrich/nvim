@@ -13,8 +13,7 @@ map.n({
   ['gd'] = cmd('Lspsaga goto_definition'),
   ['gh'] = cmd('Lspsaga finder'),
   ['<Leader>o'] = cmd('Lspsaga outline'),
-  ['<Leader>dw'] = cmd('Lspsaga show_workspace_diagnostics'),
-  ['<Leader>db'] = cmd('Lspsaga show_buf_diagnostics'),
+  ['<Leader>d'] = cmd('Dired'),
   -- dbsession
   ['<Leader>ss'] = cmd('SessionSave'),
   ['<Leader>sl'] = cmd('SessionLoad'),
@@ -39,3 +38,28 @@ map.n({
   ['<C-k>'] = cmd('NvimTmuxNavigateUp'),
   ['<C-l>'] = cmd('NvimTmuxNavigateRight'),
 })
+
+vim.keymap.set({ 'n' }, '<C-x><C-f>', function()
+  require('fzf-lua').complete_file({
+    cmd = 'rg --files',
+    winopts = { preview = { hidden = 'nohidden' } },
+  })
+end, { silent = true, desc = 'Fuzzy complete file' })
+
+--template.nvim
+map.n('<Leader>t', function()
+  local tmp_name
+  if vim.bo.filetype == 'lua' then
+    tmp_name = 'nvim_temp'
+  end
+  if tmp_name then
+    vim.cmd('Template ' .. tmp_name)
+    return
+  end
+  return ':Template '
+end, { expr = true })
+
+-- Lspsaga floaterminal
+map.nt('<A-d>', cmd('Lspsaga term_toggle'))
+
+map.nx('ga', cmd('Lspsaga code_action'))

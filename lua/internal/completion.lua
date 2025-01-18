@@ -8,11 +8,13 @@ ffi.cdef([[
   bool pum_visible(void);
 ]])
 local pumvisible = libc.pum_visible
+local g = api.nvim_create_augroup('glepnir/completion', { clear = true })
 
 -- completion on word which not exist in lsp client triggerCharacters
 local function auto_trigger(bufnr, client)
   au(InsertCharPre, {
     buffer = bufnr,
+    group = g,
     callback = function()
       if pumvisible() then
         return
@@ -24,31 +26,16 @@ local function auto_trigger(bufnr, client)
         'triggerCharacters'
       ) or {}
       if vim.v.char:match('[%w_]') and not vim.list_contains(triggerchars, vim.v.char) then
-        completion.trigger()
-      end
-    end,
-  })
-end
-
-local function set_popup(bufnr)
-  au('CompleteChanged', {
-    buffer = bufnr,
-    callback = function()
-      local info = vim.fn.complete_info()
-      if info.preview_winid and info.preview_bufnr then
-        api.nvim_set_option_value('filetype', 'markdown', { buf = info.preview_bufnr })
-        api.nvim_set_option_value('conceallevel', 2, { win = info.preview_winid, scope = 'local' })
-        api.nvim_set_option_value(
-          'concealcursor',
-          'niv',
-          { win = info.preview_winid, scope = 'local' }
-        )
+        vim.schedule(function()
+          completion.trigger()
+        end)
       end
     end,
   })
 end
 
 au('LspAttach', {
+  group = g,
   callback = function(args)
     local bufnr = args.buf
     local client = lsp.get_client_by_id(args.data.client_id)
@@ -59,11 +46,9 @@ au('LspAttach', {
     completion.enable(true, client.id, bufnr, {
       autotrigger = true,
       convert = function(item)
-        return { abbr = item.label:gsub('%b()', ''), kind = '' }
+        return { abbr = item.label:gsub('%b()', ''), kind = '', kind_hlgroup = '' }
       end,
     })
-    auto_trigger(bufnr, client)
-    -- set_popup(bufnr)
   end,
 })
 
@@ -132,5 +117,18 @@ au(InsertCharPre, {
     elseif char:match('%w') and not buf_has_client(bufnr) then
       debounce_feedkey('<C-X><C-N>')
     end
+    if #api.nvim_get_autocmds({ buffer = bufnr, event = 'InsertCharPre', group = g }) == 0 then
+      auto_trigger(bufnr, client)
+    end
+  end,
+})
+
+au('FileType', {
+  callback = function()
+    vim.lsp.start({
+      name = 'wordpath',
+      cmd = require('internal.server').create(),
+      root_dir = vim.uv.cwd(),
+    })
   end,
 })

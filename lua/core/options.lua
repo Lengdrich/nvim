@@ -15,7 +15,6 @@ opt.ttimeout = true
 opt.timeoutlen = 500
 opt.ttimeoutlen = 10
 opt.updatetime = 100
-opt.redrawtime = 1500
 opt.ignorecase = true
 opt.smartcase = true
 opt.infercase = true

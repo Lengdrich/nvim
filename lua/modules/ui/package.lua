@@ -15,6 +15,12 @@ packadd({
 })
 
 packadd({
+  'nvimdev/dired.nvim',
+  -- dev = true,
+  cmd = 'Dired',
+})
+
+packadd({
   'nvimdev/indentmini.nvim',
   event = 'BufEnter */*',
   config = function()

@@ -116,27 +116,37 @@ au('LspDetach', {
 --   end,
 --   desc = 'auto switch to abc input',
 -- })
-
-au('FileType', {
-  pattern = 'netrw',
+au('InsertLeave', {
+  group = group,
   callback = function()
-    local map = function(lhs, rhs, remap, desc)
-      vim.keymap.set('n', lhs, rhs, { buffer = true, remap = remap, desc = desc })
+    if vim.fn.executable('iswitch') == 0 then
+      return
     end
-    vim.wo.stc = ''
-    local function split(cmd)
-      return function()
-        vim.cmd(('%s %s'):format(cmd, vim.fn.expand('<cfile>')))
+    vim.system({ 'iswitch', '-s', 'com.apple.keylayout.ABC' }, nil, function(proc)
+      if proc.code ~= 0 then
+        api.nvim_err_writeln('Failed to switch input source: ' .. proc.stderr)
       end
+    end)
+  end,
+  desc = 'auto switch to abc input',
+})
+
+au('CmdlineLeave', {
+  group = group,
+  once = true,
+  callback = function()
+    if vim.v.event.cmdtype ~= '/' then
+      return
     end
-    map('r', 'R', true, 'rename file')
-    map('l', '<CR>', true, 'open directory or file')
-    map('.', 'gh', true, 'toggle dotfiles')
-    map('H', 'u', true, 'go back')
-    map('h', '-^', true, 'go up')
-    map('c', '%', true, 'create file')
-    map('s', split('vsplit'), false, 'vsplit open')
-    map('v', split('split'), false, 'split open')
-    map('<C-l>', '<C-W>l', false)
+    au({ 'InsertEnter', 'CursorHold' }, {
+      group = group,
+      callback = function()
+        if vim.v.hlsearch == 0 then
+          return
+        end
+        local keycode = api.nvim_replace_termcodes('<Cmd>nohl<CR>', true, false, true)
+        api.nvim_feedkeys(keycode, 'n', false)
+      end,
+    })
   end,
 })
