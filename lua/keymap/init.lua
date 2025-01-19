@@ -13,7 +13,9 @@ map.n({
   ['gd'] = cmd('Lspsaga goto_definition'),
   ['gh'] = cmd('Lspsaga finder'),
   ['<Leader>o'] = cmd('Lspsaga outline'),
-  ['<Leader>d'] = cmd('Dired'),
+  ['<Leader>dw'] = cmd('Lspsaga show_workspace_diagnostics'),
+  ['<Leader>db'] = cmd('Lspsaga show_buf_diagnostics'),
+  -- ['<Leader>d'] = cmd('Dired'),
   -- dbsession
   ['<Leader>ss'] = cmd('SessionSave'),
   ['<Leader>sl'] = cmd('SessionLoad'),
