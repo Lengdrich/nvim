@@ -55,5 +55,3 @@ au('LspAttach', {
     end
   end,
 })
-
-require('internal.server').setup()
