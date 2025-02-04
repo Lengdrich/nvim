@@ -16,9 +16,9 @@ packadd({
 packadd({
   'nvimdev/phoenix.nvim',
   ft = program_ft,
-  dev = true,
+  -- dev = true,
   config = function()
-    require('phoenix').setup()
+    require('phoenix')
   end,
 })
 
