@@ -2,7 +2,7 @@ packadd({
   'neovim/nvim-lspconfig',
   ft = program_ft,
   config = function()
-    vim.lsp.set_log_level(vim.lsp.log_levels.OFF)
+    -- vim.lsp.set_log_level(vim.lsp.log_levels.OFF)
     local i = '●'
     vim.diagnostic.config({
       signs = {

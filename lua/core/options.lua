@@ -20,7 +20,6 @@ opt.smartcase = true
 opt.infercase = true
 opt.cursorline = true
 
-opt.completeopt = 'menu,menuone,fuzzy,popup,noselect,noinsert'
 opt.showmode = false
 opt.shortmess = 'aoOTIcF'
 opt.scrolloff = 2

@@ -50,18 +50,30 @@ packadd({
 })
 
 packadd({
-  'alexghergh/nvim-tmux-navigation',
+  'nvimdev/fnpairs.nvim',
+  event = 'InsertEnter',
+  config = function()
+    require('fnpairs').setup()
+  end,
+})
 
+packadd({
+  'alexghergh/nvim-tmux-navigation',
   cmd = {
     'NvimTmuxNavigateLeft',
     'NvimTmuxNavigateDown',
     'NvimTmuxNavigateUp',
     'NvimTmuxNavigateRight',
   },
-
   config = function()
     require('nvim-tmux-navigation').setup({
       disable_when_zoomed = false, -- defaults to false
     })
   end,
+})
+
+packadd({
+  'nvimdev/dbsession.nvim',
+  cmd = { 'SessionSave', 'SessionLoad', 'SessionDelete' },
+  opts = true,
 })
