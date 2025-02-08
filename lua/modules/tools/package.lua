@@ -52,9 +52,6 @@ packadd({
 packadd({
   'nvimdev/fnpairs.nvim',
   event = 'InsertEnter',
-  config = function()
-    require('fnpairs').setup()
-  end,
 })
 
 packadd({
