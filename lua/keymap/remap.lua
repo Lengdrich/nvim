@@ -34,6 +34,7 @@ map.n({
 map.v({
   ['<leader>y'] = '"+y',
   ['<leader>p'] = '"+p',
+  ['gV'] = '`[v`]',
 })
 
 map.i({
@@ -53,6 +54,44 @@ map.i({
   --@see https://vim.fandom.com/wiki/Moving_lines_up_or_down
   ['<A-j>'] = '<Esc>:m .+1<CR>==gi',
 })
+
+map.i('<C-K>', function()
+  local pos = vim.api.nvim_win_get_cursor(0)
+  local row = pos[1]
+  local col = pos[2]
+  local line = vim.api.nvim_get_current_line()
+  local total_lines = vim.api.nvim_buf_line_count(0)
+  local trimmed_line = line:gsub('%s+$', '')
+  local killed_text = ''
+
+  if col == 0 then
+    if trimmed_line == '' then
+      if row < total_lines then
+        killed_text = '\n'
+        local next_line = vim.api.nvim_buf_get_lines(0, row, row + 1, false)[1] or ''
+        vim.api.nvim_buf_set_lines(0, row - 1, row + 1, false, { next_line })
+      end
+    else
+      killed_text = line
+      vim.api.nvim_set_current_line('')
+    end
+  else
+    if col < #trimmed_line then
+      killed_text = line:sub(col + 1)
+      vim.api.nvim_set_current_line(line:sub(1, col))
+    else
+      if row < total_lines then
+        killed_text = '\n'
+        local next_line = vim.api.nvim_buf_get_lines(0, row, row + 1, false)[1] or ''
+        vim.api.nvim_buf_set_lines(0, row - 1, row + 1, false, { line .. next_line })
+      end
+    end
+  end
+
+  if killed_text ~= '' then
+    vim.fn.setreg('"', killed_text, 'v')
+  end
+end)
 
 map.c({
   ['<C-b>'] = '<Left>',
@@ -88,13 +127,10 @@ map.i('<CR>', function()
     ['['] = ']',
     ['{'] = '}',
   }
-
-  if not t[before] then
-    return '<CR>'
-  end
-  if t[before] == after then
+  if t[before] and t[before] == after then
     return '<CR><ESC>O'
   end
+  return '<CR>'
 end, { expr = true })
 
 map.i('<C-e>', function()

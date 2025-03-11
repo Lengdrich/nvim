@@ -2,38 +2,36 @@ local M = {}
 local api = vim.api
 
 function M.nvim_treesitter()
-  vim.opt.foldmethod = "expr"
-  vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-  require("nvim-treesitter.configs").setup({
+  require('nvim-treesitter.configs').setup({
     ensure_installed = {
-      "c",
-      "cpp",
-      "rust",
-      "zig",
-      "lua",
-      "go",
-      "python",
-      "proto",
-      "typescript",
-      "javascript",
-      "tsx",
-      "css",
-      "scss",
-      "diff",
-      "dockerfile",
-      "gomod",
-      "gosum",
-      "gowork",
-      "graphql",
-      "html",
-      "sql",
-      "markdown",
-      "markdown_inline",
-      "json",
-      "jsonc",
-      "vimdoc",
-      "vim",
-      "cmake",
+      'c',
+      'cpp',
+      'rust',
+      'zig',
+      'lua',
+      'go',
+      'python',
+      'proto',
+      'typescript',
+      'javascript',
+      'tsx',
+      'css',
+      'scss',
+      'diff',
+      'dockerfile',
+      'gomod',
+      'gosum',
+      'gowork',
+      'graphql',
+      'html',
+      'sql',
+      'markdown',
+      'markdown_inline',
+      'json',
+      'jsonc',
+      'vimdoc',
+      'vim',
+      'cmake',
     },
     highlight = {
       enable = true,
@@ -49,13 +47,16 @@ function M.nvim_treesitter()
     },
   })
 
-  api.nvim_create_autocmd("FileType", {
-    pattern = { "javascriptreact", "typescriptreact" },
-    callback = function(opt)
-      if vim.bo[opt.buf].filetype == "lua" and api.nvim_buf_get_name(opt.buf):find("%_spec") then
-        vim.treesitter.stop(opt.buf)
+  api.nvim_create_autocmd('FileType', {
+    callback = function(args)
+      local ok = pcall(vim.treesitter.get_parser, args.buf)
+      if ok and vim.wo.foldmethod ~= 'expr' then
+        vim.wo.foldmethod = 'expr'
+        vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+        vim.defer_fn(function()
+          vim.cmd('normal! zx')
+        end, 50)
       end
-      vim.bo[opt.buf].indentexpr = "nvim_treesitter#indent()"
     end,
   })
 end
