@@ -89,7 +89,7 @@ map.i('<C-K>', function()
   end
 
   if killed_text ~= '' then
-    vim.fn.setreg('"', killed_text, 'v')
+    vim.fn.setreg('+', killed_text, 'v')
   end
 end)
 
