@@ -30,7 +30,7 @@ opt.winwidth = 30
 opt.pumheight = 15
 opt.showcmd = false
 
-opt.laststatus = 3
+-- opt.laststatus = 3
 opt.list = true
 
 --eol:¬

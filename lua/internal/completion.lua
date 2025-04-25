@@ -1,7 +1,5 @@
 local api, completion, lsp = vim.api, vim.lsp.completion, vim.lsp
 local ms = lsp.protocol.Methods
-local InsertCharPre = 'InsertCharPre'
-local pumvisible = vim.fn.pumvisible
 local g = api.nvim_create_augroup('glepnir.completion', { clear = true })
 
 vim.opt.cot = 'menu,menuone,noinsert,fuzzy,popup'
@@ -27,13 +25,27 @@ api.nvim_create_autocmd('LspAttach', {
     if not client or not client:supports_method(ms.textDocument_completion) then
       return
     end
+    local chars = client.server_capabilities.completionProvider.triggerCharacters
+    if chars then
+      for i = string.byte('a'), string.byte('z') do
+        if not vim.list_contains(chars, string.char(i)) then
+          table.insert(chars, string.char(i))
+        end
+      end
+
+      for i = string.byte('A'), string.byte('Z') do
+        if not vim.list_contains(chars, string.char(i)) then
+          table.insert(chars, string.char(i))
+        end
+      end
+    end
 
     completion.enable(true, client.id, bufnr, {
       autotrigger = true,
       convert = function(item)
         local kind = lsp.protocol.CompletionItemKind[item.kind] or 'u'
         local doc = item.documentation or {}
-        local info, menu
+        local info
         if vim.bo.filetype == 'c' then
           info = ('%s%s\n \n%s'):format(item.detail or '', item.label, doc.value or '')
         end
@@ -46,46 +58,16 @@ api.nvim_create_autocmd('LspAttach', {
       end,
     })
 
-    if #api.nvim_get_autocmds({ buffer = bufnr, event = 'InsertCharPre', group = g }) ~= 0 then
-      return
-    end
-
-    api.nvim_create_autocmd(InsertCharPre, {
-      buffer = bufnr,
-      group = g,
-      callback = function()
-        if tonumber(pumvisible()) == 1 then
-          return
-        end
-        local triggerchars = vim.tbl_get(
-          client,
-          'server_capabilities',
-          'completionProvider',
-          'triggerCharacters'
-        ) or {}
-        if vim.v.char:match('[%w_]') and not vim.list_contains(triggerchars, vim.v.char) then
-          vim.schedule(function()
-            completion.get()
-          end)
-        end
-      end,
-      desc = 'completion on character which not exist in lsp client triggerCharacters',
-    })
-
     api.nvim_create_autocmd('TextChangedP', {
       buffer = bufnr,
       group = g,
-      callback = function()
-        vim.g._ts_force_sync_parsing = true
-      end,
+      command = 'let g:_ts_force_sync_parsing = v:true',
     })
 
     api.nvim_create_autocmd('CompleteDone', {
       buffer = bufnr,
       group = g,
-      callback = function()
-        vim.g._ts_force_sync_parsing = false
-      end,
+      command = 'let g:_ts_force_sync_parsing = v:false',
     })
   end,
 })
