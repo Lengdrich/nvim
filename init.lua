@@ -48,6 +48,7 @@ g.loaded_netrwPlugin = 1
 g.loaded_matchparen = 1
 
 local o = vim.o
+o.cmdheight = 0
 o.hidden = true
 o.magic = true
 o.virtualedit = 'block'

@@ -100,6 +100,17 @@ map.n({
   ['[t'] = cmd('vs | vertical resize -5 | terminal'),
   [']t'] = cmd('set splitbelow | sp | set nosplitbelow | resize -5 | terminal'),
   ['<C-x>t'] = cmd('tabnew | terminal'),
+
+  ['<leader>w'] = cmd('w'),
+  ['<leader>y'] = '"+y',
+  ['<leader>yy'] = '"+yy',
+  ['<leader>2'] = '$',
+  ['<leader>p'] = '"+p',
+})
+
+map.v({
+  ['<leader>y'] = '"+y',
+  ['<leader>p'] = '"+p',
   ['gV'] = '`[v`]',
 })
 
@@ -314,15 +325,15 @@ map.n('gs', function()
 end)
 
 map.n({
-  -- Lspsaga
   ['[d'] = cmd('Lspsaga diagnostic_jump_next'),
   [']d'] = cmd('Lspsaga diagnostic_jump_prev'),
+  ['K'] = cmd('Lspsaga hover_doc'),
   ['ga'] = cmd('Lspsaga code_action'),
   ['gr'] = cmd('Lspsaga rename'),
-  ['gd'] = cmd('Lspsaga peek_definition'),
-  ['gp'] = cmd('Lspsaga goto_definition'),
+  ['gp'] = cmd('Lspsaga peek_definition'),
+  ['gd'] = cmd('Lspsaga goto_definition'),
   ['gh'] = cmd('Lspsaga finder'),
-  -- ['<Leader>o'] = cmd('Lspsaga outline'),
+  ['<Leader>o'] = cmd('Lspsaga outline'),
   -- dbsession
   ['<Leader>ss'] = cmd('SessionSave'),
   ['<Leader>sl'] = cmd('SessionLoad'),
@@ -335,13 +346,17 @@ map.n({
   ['<Leader>fo'] = cmd('FzfLua oldfiles'),
   ['<Leader>fg'] = cmd('FzfLua git_files'),
   ['<Leader>gc'] = cmd('FzfLua git_commits'),
-  ['<Leader>o'] = cmd('FzfLua lsp_document_symbols'),
   ['<Leader>fc'] = cmd('FzfLua files cwd=$HOME/.config'),
   -- flybuf.nvim
   ['<Leader>j'] = cmd('FlyBuf'),
   --gitsign
   [']g'] = cmd('lua require"gitsigns".next_hunk()<CR>'),
   ['[g'] = cmd('lua require"gitsigns".prev_hunk()<CR>'),
+  --======================tmux navigate======================
+  ['<C-h>'] = cmd('NvimTmuxNavigateLeft'),
+  ['<C-j>'] = cmd('NvimTmuxNavigateDown'),
+  ['<C-k>'] = cmd('NvimTmuxNavigateUp'),
+  ['<C-l>'] = cmd('NvimTmuxNavigateRight'),
 })
 
 map.n('<C-X><C-f>', cmd('Dired'))
@@ -351,10 +366,10 @@ map.nt('<A-d>', cmd('Lspsaga term_toggle'))
 
 map.nx('ga', cmd('Lspsaga code_action'))
 
-map.n('f', function()
-  require('private.jump').charForward()
-end)
+-- map.n('f', function()
+--   require('private.jump').charForward()
+-- end)
 
-map.n('F', function()
-  require('private.jump').charBackward()
-end)
+-- map.n('F', function()
+--   require('private.jump').charBackward()
+-- end)

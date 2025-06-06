@@ -26,7 +26,9 @@ async(function()
   vim.o.rtp = strive_path .. ',' .. vim.o.rtp
   local use = require('strive').use
 
+  -- ==================================UI======================================
   use('nvimdev/modeline.nvim'):on({ 'BufEnter */*', 'BufNewFile' }):setup()
+
   use('lewis6991/gitsigns.nvim'):on({ 'BufEnter */*', 'BufNewFile' }):setup({
     signs = {
       add = { text = '┃' },
@@ -37,16 +39,19 @@ async(function()
       untracked = { text = '┃' },
     },
   })
-  use('nvimdev/dired.nvim'):cmd('Dired')
+
   use('nvimdev/indentmini.nvim')
     :on('BufEnter */*')
     :init(function()
       vim.opt.listchars:append({ tab = '  ' })
     end)
     :setup({
-      only_current = true,
+      -- only_current = true,
+      -- char = '|',
     })
-    :load_path()
+
+  --===================================tool====================================
+  use('nvimdev/dired.nvim'):cmd('Dired')
 
   use('nvimdev/guard.nvim')
     :on('BufReadPost')
@@ -69,9 +74,32 @@ async(function()
       ft('typescript', 'javascript', 'typescriptreact', 'javascriptreact'):fmt('prettier')
     end)
     :depends('nvimdev/guard-collection')
-    :load_path()
 
   use('nvimdev/dbsession.nvim'):cmd({ 'SessionSave', 'SessionLoad', 'SessionDelete' })
+
+  use('nvimdev/flybuf.nvim'):cmd('FlyBuf'):setup({})
+
+  use('keaising/im-select.nvim'):on('InsertEnter'):setup({
+    default_im_select = 'com.apple.keylayout.ABC',
+    default_command = 'im-select',
+    set_default_events = { 'VimEnter', 'FocusGained', 'InsertLeave', 'CmdlineLeave' },
+    set_previous_events = {},
+    keep_quiet_on_no_binary = false,
+    async_switch_im = true,
+  })
+
+  use('alexghergh/nvim-tmux-navigation')
+    :cmd({
+      'NvimTmuxNavigateLeft',
+      'NvimTmuxNavigateDown',
+      'NvimTmuxNavigateUp',
+      'NvimTmuxNavigateRight',
+    })
+    :setup({
+      disable_when_zoomed = false, -- defaults to false
+    })
+
+  --=================================editor====================================
 
   use('ibhagwan/fzf-lua'):cmd('FzfLua'):setup({
     'max-perf',
@@ -127,21 +155,20 @@ async(function()
       end)
     end)
 
+  --==================================lsp======================================
+
   use('nvimdev/phoenix.nvim'):ft(vim.g.language)
 
-  use('nvimdev/lspsaga.nvim')
-    :on('LspAttach')
-    :setup({
-      ui = { use_nerd = false },
-      symbol_in_winbar = {
-        enable = false,
-      },
-      lightbulb = {
-        enable = false,
-      },
-      outline = {
-        layout = 'float',
-      },
-    })
-    :load_path()
+  use('nvimdev/lspsaga.nvim'):on('LspAttach'):setup({
+    ui = { use_nerd = false },
+    symbol_in_winbar = {
+      enable = false,
+    },
+    lightbulb = {
+      enable = false,
+    },
+    outline = {
+      layout = 'float',
+    },
+  })
 end)()

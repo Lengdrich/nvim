@@ -2,7 +2,7 @@
 -- violet    #6c71c4
 local colors = {
   base04 = '#00202b',
-  base03 = '#002838',
+  base03 = '#002b36',
   -- base03 = '#002937',
   base02 = '#073642',
   base01 = '#586e75',
@@ -18,6 +18,7 @@ local colors = {
   blue = '#268bd2',
   cyan = '#2aa198',
   green = '#84a800',
+  purple = '#6c71c4',
   magenta = '#d33682',
   -- Custom modifications
   fg = '#b6b6b6', -- Brighter foreground
@@ -39,13 +40,19 @@ local function load_solarized()
   shl('Comment', { fg = colors.base01, italic = true })
   shl('String', { fg = colors.cyan })
   shl('Function', { fg = colors.blue })
-  shl('Keyword', { fg = colors.green, bold = true })
-  shl('Constant', { fg = colors.violet })
+  shl('Keyword', { fg = colors.purple })
+  shl('Include', { fg = colors.purple, bold = true })
+  shl('Define', { fg = colors.blue })
+  shl('Macro', { fg = colors.blue })
+  shl('PreCondit', { fg = colors.purple })
+  shl('Include', { fg = colors.purple, bold = true })
+  shl('Constant', { fg = colors.magenta })
   shl('Identifier', { fg = colors.blue })
-  shl('Statement', { fg = colors.green })
+  shl('Statement', { fg = colors.purple })
   shl('Number', { link = 'Constant' })
   shl('PreProc', { fg = colors.orange })
-  shl('Type', { fg = colors.yellow })
+  shl('StorageClass', { fg = colors.purple })
+  shl('Type', { fg = colors.green })
   shl('Special', { fg = colors.orange })
   shl('Operator', { fg = colors.base0 })
   shl('Underlined', { fg = colors.violet, underline = true })
@@ -61,7 +68,7 @@ local function load_solarized()
   shl('PmenuSel', { fg = colors.base3, bg = colors.base00 })
   shl('PmenuSbar', { bg = colors.base1 })
   shl('PmenuThumb', { bg = colors.base01 })
-  shl('MatchParen', { bg = colors.base02 })
+  shl('MatchParen', { reverse = true })
   shl('WinBar', { bg = colors.base02 })
   shl('NormalFloat', { bg = colors.base04 })
   shl('FloatBorder', { fg = colors.blue })
@@ -73,36 +80,31 @@ local function load_solarized()
   shl('ColorColumn', { bg = colors.base02 })
   shl('Title', { fg = colors.orange })
   shl('WildMenu', { fg = colors.base2, bg = colors.base02, reverse = true })
-  shl('Folded', { bg = colors.base04, fg = colors.base0 })
+  shl('Folded', { bg = colors.base02, fg = colors.base0 })
   shl('ErrorMsg', { fg = colors.red })
   shl('ComplMatchIns', { fg = colors.base01 })
-  shl('Directory', { fg = colors.cyan })
-  shl('QuickFixLine', { bold = true })
-  shl('qfFileName', { fg = colors.blue })
-  shl('qfSeparator', { fg = colors.base01 })
-  shl('qfLineNr', { link = 'LineNr' })
-  shl('qfText', { link = 'Normal' })
 
   -- Treesitter highlights
   shl('@function', { fg = colors.blue })
   shl('@function.builtin', { fg = colors.blue })
   shl('@variable', { fg = colors.fg })
   shl('@variable.builtin', { fg = colors.fg })
-  shl('@keyword', { fg = colors.green })
-  shl('@keyword.import', { link = 'PreProc' })
+  shl('@keyword', { link = 'Keyword' })
+  shl('@keyword.import', { link = 'Keyword' })
   shl('@string', { fg = colors.cyan })
   shl('@string.escape', { fg = colors.cyan })
   shl('@string.regexp', { fg = colors.cyan })
   shl('@comment', { fg = colors.base01, italic = true })
-  shl('@type', { fg = colors.yellow })
+  shl('@type', { fg = colors.green })
   shl('@type.builtin', { link = '@type' })
   shl('@constant', { link = 'Constant' })
-  shl('@constant.builtin', { link = 'Constant' })
+  shl('@constant.builtin', { link = 'Type' })
   shl('@constant.macro', { link = 'Constant' })
   shl('@constructor', { link = 'Function' })
   shl('@parameter', { fg = colors.base0 })
   shl('@class', { fg = colors.yellow })
   shl('@method', { fg = colors.blue })
+  shl('@module', { fg = colors.green })
   shl('@property', { link = '@variable' })
   -- shl('@field', { fg = colors.base0 })
   shl('@interface', { fg = colors.yellow })
@@ -132,7 +134,7 @@ local function load_solarized()
   shl('LspReferenceWrite', { bg = colors.base02 })
 
   -- Indentmini
-  shl('IndentLine', { link = 'Comment' })
+  shl('IndentLine', { fg = colors.base01, italic = false })
   shl('IndentLineCurrent', { fg = '#084352' })
 
   -- GitSigns

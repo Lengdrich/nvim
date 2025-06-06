@@ -84,15 +84,15 @@ au('InsertEnter', {
   desc = 'auto pairs',
 })
 
-au('CmdlineEnter', {
-  group = group,
-  once = true,
-  callback = function()
-    if vim.version().minor >= 12 then
-      require('vim._extui').enable({})
-    end
-  end,
-})
+-- au('CmdlineEnter', {
+--   group = group,
+--   once = true,
+--   callback = function()
+--     if vim.version().minor >= 12 then
+--       require('vim._extui').enable({})
+--     end
+--   end,
+-- })
 
 au('UIEnter', {
   group = group,
@@ -139,8 +139,6 @@ au('UIEnter', {
       end, { desc = 'enable lsp log' })
 
       require('private.grep')
-
-      vim.cmd.packadd('nohlsearch')
     end)
   end,
   desc = 'Initializer',
