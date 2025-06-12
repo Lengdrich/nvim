@@ -157,7 +157,12 @@ async(function()
 
   --==================================lsp======================================
 
-  use('nvimdev/phoenix.nvim'):ft(vim.g.language)
+  -- use('nvimdev/phoenix.nvim'):ft(vim.g.language)
+  use('nvimdev/phoenix.nvim'):ft(vim.g.language):init(function()
+    vim.g.phoenix = {
+      snippet = vim.fn.stdpath('config') .. '/snippets',
+    }
+  end)
 
   use('nvimdev/lspsaga.nvim'):on('LspAttach'):setup({
     ui = { use_nerd = false },

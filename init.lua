@@ -52,7 +52,7 @@ o.cmdheight = 0
 o.hidden = true
 o.magic = true
 o.virtualedit = 'block'
-o.clipboard = 'unnamedplus'
+o.clipboard = ''
 o.wildignorecase = true
 o.swapfile = false
 

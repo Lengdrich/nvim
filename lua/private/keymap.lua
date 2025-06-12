@@ -373,3 +373,8 @@ map.nx('ga', cmd('Lspsaga code_action'))
 -- map.n('F', function()
 --   require('private.jump').charBackward()
 -- end)
+
+vim.cmd([[
+iabbrev <expr> ,d strftime('%Y-%m-%d')
+iabbrev <expr> ,t strftime('%Y-%m-%d %H:%M')
+]])
