@@ -125,15 +125,8 @@
     "prefix": "class", 
     "body": [
       "class ${1:MyClass} {",
+      "\t$2",
       "public:",
-      "\t${1:MyClass}() = default;",
-      "\t${1:MyClass}(const ${1:MyClass}&) = default;",
-      "\t${1:MyClass}(${1:MyClass}&&) = default;",
-      "\t${1:MyClass}& operator=(const ${1:MyClass}&) = default;",
-      "\t${1:MyClass}& operator=(${1:MyClass}&&) = default;",
-      "\t~${1:MyClass}() = default;",
-      "",
-      "private:",
       "\t$0",
       "};"
     ],

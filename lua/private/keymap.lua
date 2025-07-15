@@ -324,7 +324,7 @@ map.n({
   ['gd'] = cmd('Lspsaga goto_definition'),
   ['gh'] = cmd('Lspsaga finder'),
   ['<Leader>o'] = cmd('Lspsaga outline'),
-  ['gl'] = cmd('VisualizerFull'),
+  ['gl'] = cmd('Visualizer full'),
   -- dbsession
   ['<Leader>ss'] = cmd('SessionSave'),
   ['<Leader>sl'] = cmd('SessionLoad'),

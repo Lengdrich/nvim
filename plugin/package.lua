@@ -161,7 +161,6 @@ async(function()
 
   --==================================lsp======================================
 
-  -- use('nvimdev/phoenix.nvim'):ft(vim.g.language)
   use('nvimdev/phoenix.nvim'):ft(vim.g.language):init(function()
     vim.g.phoenix = {
       snippet = vim.fn.stdpath('config') .. '/snippets',
@@ -181,10 +180,5 @@ async(function()
     },
   })
 
-
---   use('nvimdev/visualizer.nvim'):cmd({
---     'VisualizerFull',
---     'VisualizerIncoming',
---     'VisualizerOutgoing',
---   })
+  use('nvimdev/visualizer.nvim'):cmd('Visualizer')
 end)()
