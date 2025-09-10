@@ -100,6 +100,10 @@ map.n({
   ['<leader>yy'] = '"+yy',
   ['<leader>2'] = '$',
   ['<leader>p'] = '"+p',
+
+  -- map("v", "<Leader>y", '"+y')
+  -- map("v", "<Leader>p", '"+p')
+  -- map("v", "<Leader>2", "$")
 })
 
 map.v({
@@ -115,6 +119,10 @@ map.i({
   ['<C-a>'] = '<Esc>^i',
   ['<C-n>'] = '<Down>',
   ['<C-p>'] = '<Up>',
+  ['<C-k>'] = '<C-o>d$',
+  ['<C-s>'] = '<ESC>:w<CR>',
+  -- ['<C-n>'] = '<Down>',
+  -- ['<C-p>'] = '<Up>',
   --down/up
   ['<C-j>'] = '<C-o>o',
   ['<C-l>'] = '<C-o>O',
@@ -197,33 +205,6 @@ map.i('<C-y>', function()
     return '<C-y>'
   end
   return '<Esc>p==a'
-end, { expr = true })
-
--- move line down
-map.i('<A-k>', function()
-  local lnum = api.nvim_win_get_cursor(0)[1]
-  local line = api.nvim_buf_get_lines(0, lnum - 3, lnum - 2, false)[1]
-  return #line > 0 and '<Esc>:m .-2<CR>==gi' or '<Esc>kkddj:m .-2<CR>==gi'
-end, { expr = true })
-
-map.i('<TAB>', function()
-  if tonumber(vim.fn.pumvisible()) == 1 then
-    return '<C-n>'
-  elseif vim.snippet.active({ direction = 1 }) then
-    return '<cmd>lua vim.snippet.jump(1)<cr>'
-  else
-    return '<TAB>'
-  end
-end, { expr = true })
-
-map.i('<S-TAB>', function()
-  if vim.fn.pumvisible() == 1 then
-    return '<C-p>'
-  elseif vim.snippet.active({ direction = -1 }) then
-    return '<cmd>lua vim.snippet.jump(-1)<CR>'
-  else
-    return '<S-TAB>'
-  end
 end, { expr = true })
 
 map.i('<CR>', function()
