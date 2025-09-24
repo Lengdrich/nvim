@@ -1,5 +1,8 @@
 local uv = vim.uv
-local strive = vim.fs.joinpath(vim.fn.stdpath('data'), 'site', 'pack', 'strive', 'opt', 'strive')
+local data_dir = vim.fn.stdpath('data')
+local START_DIR = vim.fs.joinpath(data_dir, 'site', 'pack', 'strive', 'start')
+local OPT_DIR = vim.fs.joinpath(data_dir, 'site', 'pack', 'strive', 'opt')
+local strive = vim.fs.joinpath(OPT_DIR, 'strive')
 vim.g.strive_dev_path = '/Users/mw/workspace'
 
 local installed = (uv.fs_stat(strive) or {}).type == 'directory'
@@ -51,7 +54,6 @@ async(function()
     })
 
   --===================================tool====================================
-  use('nvimdev/dired.nvim'):cmd('Dired')
 
   use('nvimdev/guard.nvim')
     :on('BufReadPost')
@@ -104,15 +106,26 @@ async(function()
     })
 
   --=================================editor====================================
+  
+  use('mikavilpas/yazi.nvim')
+    :keys({
+      {'n', '<leader>-', '<cmd>Yazi<CR>', {silent = true}},
+      {'v', '<leader>-', '<cmd>Yazi<CR>', {silent = true}},
+      {'n', '<leader>cw', '<cmd>Yazi cwd<CR>', {silent = true}},
+    })
+    :depends('nvim-lua/plenary.nvim')
 
   use('ibhagwan/fzf-lua'):cmd('FzfLua'):setup({
     'max-perf',
     lsp = { symbols = { symbol_style = 3 } },
   })
 
-  use('nvim-treesitter/nvim-treesitter'):on('BufReadPre'):branch('main'):run(function()
-    require('nvim-treesitter').install(vim.g.language)
-  end)
+  use('nvim-treesitter/nvim-treesitter')
+    :on('BufReadPre')
+    :branch('main')
+    :run(function()
+      require('nvim-treesitter').install(vim.g.language)
+    end)
 
   use('nvim-treesitter/nvim-treesitter-textobjects')
     :on('BufReadPost')
@@ -160,6 +173,35 @@ async(function()
     end)
 
   --==================================lsp======================================
+
+  use('saghen/blink.cmp')
+    :depends('rafamadriz/friendly-snippets')
+    :on({"InsertEnter", "CmdlineEnter" })
+    -- 自动构建
+    :run(function()
+      vim.notify('Building blink.cmp', vim.log.levels.INFO)
+      local path = vim.fs.joinpath(OPT_DIR, "blink.cmp")
+      local obj = vim.system({ 'cargo', 'build', '--release' }, { cwd = path }):wait()
+      if obj.code == 0 then
+        vim.notify('Building blink.cmp done', vim.log.levels.INFO)
+      else
+        vim.notify('Building blink.cmp failed', vim.log.levels.ERROR)
+      end
+    end)
+    :setup({
+      keymap = { preset = 'enter' },
+
+      appearance = {
+        nerd_font_variant = 'mono'
+      },
+
+      completion = { documentation = { auto_show = true } },
+
+      sources = {
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
+      },
+      fuzzy = { implementation = "prefer_rust_with_warning" }
+    })
 
   use('nvimdev/phoenix.nvim'):ft(vim.g.language):init(function()
     vim.g.phoenix = {
