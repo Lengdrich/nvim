@@ -1,8 +1,8 @@
 local uv = vim.uv
-local data_dir = vim.fn.stdpath('data')
-local START_DIR = vim.fs.joinpath(data_dir, 'site', 'pack', 'strive', 'start')
-local OPT_DIR = vim.fs.joinpath(data_dir, 'site', 'pack', 'strive', 'opt')
-local strive = vim.fs.joinpath(OPT_DIR, 'strive')
+local plugin_dir = vim.fs.joinpath(vim.fn.stdpath('data'), 'site', 'pack', 'strive')
+local plugin_start_dir = vim.fs.joinpath(plugin_dir, 'start')
+local plugin_opt_dir = vim.fs.joinpath(plugin_dir, 'opt')
+local strive = vim.fs.joinpath(plugin_opt_dir, 'strive')
 vim.g.strive_dev_path = '/Users/mw/workspace'
 
 local installed = (uv.fs_stat(strive) or {}).type == 'directory'
@@ -180,7 +180,7 @@ async(function()
     -- 自动构建
     :run(function()
       vim.notify('Building blink.cmp', vim.log.levels.INFO)
-      local path = vim.fs.joinpath(OPT_DIR, "blink.cmp")
+      local path = vim.fs.joinpath(plugin_opt_dir, "blink.cmp")
       local obj = vim.system({ 'cargo', 'build', '--release' }, { cwd = path }):wait()
       if obj.code == 0 then
         vim.notify('Building blink.cmp done', vim.log.levels.INFO)
@@ -189,7 +189,10 @@ async(function()
       end
     end)
     :setup({
-      keymap = { preset = 'enter' },
+      keymap = {
+        preset = 'enter',
+        ["<C-Space>"] = false
+      },
 
       appearance = {
         nerd_font_variant = 'mono'
@@ -202,12 +205,6 @@ async(function()
       },
       fuzzy = { implementation = "prefer_rust_with_warning" }
     })
-
-  use('nvimdev/phoenix.nvim'):ft(vim.g.language):init(function()
-    vim.g.phoenix = {
-      snippet = vim.fn.stdpath('config') .. '/snippets',
-    }
-  end)
 
   use('nvimdev/lspsaga.nvim'):on('LspAttach'):setup({
     ui = { use_nerd = false },
