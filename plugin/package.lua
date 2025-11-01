@@ -61,10 +61,10 @@ async(function()
       local ft = require('guard.filetype')
       ft('c,cpp'):fmt({
         cmd = 'clang-format',
-        args = function(bufnr)
-          local f = vim.bo[bufnr].filetype == 'cpp' and '.cc-format' or '.c-format'
-          return { ('--style=file:%s/%s'):format(vim.env.HOME, f) }
-        end,
+        -- args = function(bufnr)
+        --   local f = vim.bo[bufnr].filetype == 'cpp' and '.cc-format' or '.c-format'
+        --   return { ('--style=file:%s/%s'):format(vim.env.HOME, f) }
+        -- end,
         stdin = true,
         ignore_patterns = { 'neovim', 'vim' },
       })
