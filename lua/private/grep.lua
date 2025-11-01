@@ -251,7 +251,7 @@ local grep = async(function(t, ...)
       end
 
       vim.schedule(function()
-        if #process > 0 or not data then
+        if #process > 0 or data ~= nil then
           qf_fn({}, 'a', {
             lines = not data and chunk or process,
             id = id,
@@ -261,7 +261,7 @@ local grep = async(function(t, ...)
           })
 
           if not opened then
-            vim.cmd(t == QUICK and 'cw' or 'lw')
+            vim.cmd(t == QUICK and 'copen' or 'lopen')
             local buf = api.nvim_get_current_buf()
             state.win = api.nvim_get_current_win()
             setup_init(buf, t == QUICK)
