@@ -73,12 +73,12 @@ o.showtabline = 0
 o.showcmd = false
 
 o.pumheight = 15
-o.pummaxwidth = 30
+-- o.pummaxwidth = 30
 
 o.list = true
 --eol:¬
 o.listchars = 'tab:» ,nbsp:+,trail:·,extends:→,precedes:←,'
-o.fillchars = 'trunc:…'
+-- o.fillchars = 'trunc:…'
 o.foldtext = ''
 o.foldlevelstart = 99
 

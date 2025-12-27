@@ -296,9 +296,11 @@ map.n('gs', function()
 end)
 
 map.n({
-  ['[d'] = cmd('Lspsaga diagnostic_jump_next'),
-  [']d'] = cmd('Lspsaga diagnostic_jump_prev'),
-  ['K'] = cmd('Lspsaga hover_doc'),
+  -- ['[d'] = cmd(''),
+  -- [']d'] = cmd('Lspsaga diagnostic_jump_prev'),
+  ['[d'] = vim.diagnostic.goto_next,
+  [']d'] = vim.diagnostic.goto_prev,
+  ['K'] =  cmd('Lspsaga hover_doc'),
   ['ga'] = cmd('Lspsaga code_action'),
   ['gr'] = cmd('Lspsaga rename'),
   ['gp'] = cmd('Lspsaga peek_definition'),
